@@ -1,0 +1,41 @@
+<app-page-header heading="05 · DI & services" docsFolder="05-di-services">
+  Dependency injection: who creates your services, where they live (injector hierarchy), how many instances
+  exist, and how they are destroyed.
+</app-page-header>
+
+<app-demo-section
+  heading="Singleton vs component-scoped instance (and service destruction)"
+  docs="https://angular.dev/guide/di/hierarchical-dependency-injection#elementinjector"
+>
+  <app-instance-scope />
+</app-demo-section>
+
+<app-demo-section
+  heading="Destroying a service by destroying its EnvironmentInjector · injection context"
+  docs="https://angular.dev/guide/di/dependency-injection-context"
+>
+  <app-env-injector-demo />
+</app-demo-section>
+
+<app-demo-section
+  heading="Provider recipes: useClass, useValue, useFactory, useExisting, multi, token factory"
+  docs="https://angular.dev/guide/di/defining-dependency-providers"
+>
+  <app-provider-recipes />
+</app-demo-section>
+
+<app-demo-section
+  heading="Resolution modifiers: optional, self, skipSelf, host"
+  docs="https://angular.dev/guide/di/hierarchical-dependency-injection#resolution-modifiers"
+>
+  <app-modifier-parent />
+</app-demo-section>
+
+<app-demo-section
+  heading="providers vs viewProviders"
+  docs="https://angular.dev/guide/di/hierarchical-dependency-injection#providers-vs-viewproviders"
+>
+  <app-view-providers-host>
+    <app-theme-reader label="Child projected via ng-content" />
+  </app-view-providers-host>
+</app-demo-section>

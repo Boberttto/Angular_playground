@@ -1,0 +1,21 @@
+<table>
+  <tbody>
+    <tr>
+      <td><code>[(rating)]="movieRating"</code> (signal)</td>
+      <td><app-rating-input [(rating)]="movieRating" /></td>
+      <td>parent sees {{ movieRating() }}</td>
+    </tr>
+    <tr>
+      <td><code>[(rating)]="bookRating"</code> (plain field)</td>
+      <td><app-rating-input [(rating)]="bookRating" [max]="10" /></td>
+      <td>parent sees {{ bookRating }}</td>
+    </tr>
+    <tr>
+      <td><code>[rating]="gameRating()" (ratingChange)="…"</code></td>
+      <td><app-rating-input [rating]="gameRating()" (ratingChange)="onGameChange($event)" /></td>
+      <td>parent sees {{ gameRating() }}</td>
+    </tr>
+  </tbody>
+</table>
+<button type="button" class="secondary" (click)="movieRating.set(5)">Parent sets movieRating = 5</button>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="ratingChange (desugared form)" />

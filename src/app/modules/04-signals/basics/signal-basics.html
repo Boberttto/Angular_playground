@@ -1,0 +1,28 @@
+<h3>set / update</h3>
+<div class="row">
+  <span>count = <strong>{{ count() }}</strong></span>
+  <button type="button" (click)="increment()">update(n =&gt; n + 1)</button>
+  <button type="button" class="secondary" (click)="reset()">set(0)</button>
+</div>
+
+<h3>asReadonly() store</h3>
+<ul>
+  @for (item of store.items(); track item.id) {
+    <li>
+      {{ item.name }} × {{ item.qty }}
+      <button type="button" class="secondary" (click)="store.increment(item.id)">+1</button>
+    </li>
+  }
+</ul>
+<div class="row">
+  <span>totalQty (computed) = <strong>{{ store.totalQty() }}</strong></span>
+  <button type="button" (click)="store.add('Mouse')">Add (immutable)</button>
+  <button type="button" class="secondary" (click)="mutate()">Mutate in place ⚠️</button>
+</div>
+
+<h3>Equality function</h3>
+<p>Default (<code>Object.is</code>): {{ defaultLabel() }}</p>
+<p>Custom (<code>equal: same id</code>): {{ byIdLabel() }}</p>
+<button type="button" (click)="renameBoth()">Rename user on both signals</button>
+
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" />

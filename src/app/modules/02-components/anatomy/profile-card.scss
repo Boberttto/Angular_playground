@@ -1,0 +1,26 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+// :host targets <app-profile-card> itself (it is display: inline by default!).
+:host {
+  @include m.flex-row(v.$space-3);
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+  padding: v.$space-2 v.$space-3;
+  cursor: pointer;
+  background: v.$color-surface;
+}
+
+// :host(<selector>) = host element matching the selector (here the class set by the host binding).
+:host(.featured) {
+  border-color: v.$color-primary;
+  background: v.$color-primary-soft;
+}
+
+.avatar {
+  font-size: 1.8rem;
+}
+
+.stars {
+  color: v.$color-warning;
+}

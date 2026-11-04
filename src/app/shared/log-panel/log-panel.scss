@@ -1,0 +1,39 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: block;
+  margin-top: v.$space-3;
+}
+
+.header {
+  @include m.flex-row;
+  justify-content: space-between;
+  margin-bottom: v.$space-1;
+}
+
+.box {
+  @include m.mono-box;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.time {
+  opacity: 0.5;
+}
+
+.hook {
+  color: #c6a0f6;
+}
+.success {
+  color: #a6e3a1;
+}
+.warning {
+  color: #f9e2af;
+}
+.error {
+  color: #f38ba8;
+}
+.empty {
+  opacity: 0.5;
+}

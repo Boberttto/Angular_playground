@@ -1,0 +1,28 @@
+<app-page-header heading="03 · Lifecycle hooks" docsFolder="03-lifecycle">
+  Every hook of a component, a directive and a service, logged in the exact order Angular calls them.
+  Each button opens a short "recording window" labelled ▶ in the log.
+</app-page-header>
+
+<app-demo-section heading="1 · Component: every hook, in order" docs="https://angular.dev/guide/components/lifecycle">
+  <p class="muted">
+    Things to notice: the constructor sees the input's <em>default</em> value; <code>ngOnChanges</code> runs before
+    <code>ngOnInit</code>; the static <code>&#64;ViewChild</code> is already defined in <code>ngOnInit</code>;
+    <code>afterNextRender</code> phases run once, after <em>all</em> Checked hooks; setting the input directly in
+    TypeScript calls <strong>no</strong> hook and the OnPush child keeps showing the old value; an event that changes
+    nothing still runs <code>ngDoCheck</code> and the Checked hooks.
+  </p>
+  <app-hook-parent />
+</app-demo-section>
+
+<app-demo-section heading="2 · Directive: same hooks as a component" docs="https://angular.dev/guide/directives/attribute-directives">
+  <p class="muted">A directive has no template, but Angular still calls the content and view hooks on it.</p>
+  <app-directive-hooks-demo />
+</app-demo-section>
+
+<app-demo-section heading="3 · Service: only ngOnDestroy" docs="https://angular.dev/api/core/OnDestroy">
+  <p class="muted">
+    The service defines <code>ngOnInit</code>, <code>ngDoCheck</code> and <code>ngAfterViewInit</code>, yet only
+    <code>ngOnDestroy</code> (and <code>DestroyRef</code> callbacks) are ever called.
+  </p>
+  <app-service-hooks-demo />
+</app-demo-section>

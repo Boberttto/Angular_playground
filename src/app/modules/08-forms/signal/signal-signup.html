@@ -1,0 +1,47 @@
+<!-- FormRoot: sets novalidate, prevents the native submit and calls submit() with the form's submission options -->
+<form [formRoot]="signUpForm">
+  @let username = signUpForm.username;
+  <label>Username <input [formField]="username" autocomplete="off" /></label>
+  @if (username().pending()) {
+    <small class="muted">Checking availability…</small>
+  }
+  <app-field-errors [show]="username().touched()" [errors]="username().errors()" />
+
+  <label>Email <input type="email" [formField]="signUpForm.email" /></label>
+  <app-field-errors [show]="signUpForm.email().touched()" [errors]="signUpForm.email().errors()" />
+
+  <label>Password <input type="password" [formField]="signUpForm.password" /></label>
+  <app-field-errors [show]="signUpForm.password().touched()" [errors]="signUpForm.password().errors()" />
+
+  <label>Confirm <input type="password" [formField]="signUpForm.confirmPassword" /></label>
+  <app-field-errors [show]="signUpForm.confirmPassword().touched()" [errors]="signUpForm.confirmPassword().errors()" />
+
+  <fieldset>
+    <legend>Skills (array field + applyEach)</legend>
+    <!-- An array FieldTree is iterable: each item is itself a FieldTree -->
+    @for (skill of signUpForm.skills; track $index; let i = $index) {
+      <div class="row">
+        <input [formField]="skill" />
+        <button type="button" class="secondary" (click)="removeSkill(i)">✕</button>
+        <app-field-errors [show]="skill().touched()" [errors]="skill().errors()" />
+      </div>
+    }
+    <button type="button" class="secondary" (click)="addSkill()">+ skill</button>
+  </fieldset>
+
+  <div class="row">Rating (FormValueControl): <app-rating-control [formField]="signUpForm.rating" /></div>
+
+  <div class="row">
+    <button type="submit" [disabled]="signUpForm().submitting()">
+      {{ signUpForm().submitting() ? 'Submitting…' : 'Sign up' }}
+    </button>
+    <button type="button" class="secondary" (click)="reset()">Reset</button>
+    <span class="muted">
+      valid: <code>{{ signUpForm().valid() }}</code> · invalid: <code>{{ signUpForm().invalid() }}</code> ·
+      pending: {{ signUpForm().pending() }} · dirty: {{ signUpForm().dirty() }} · touched: {{ signUpForm().touched() }}
+    </span>
+  </div>
+  <small class="muted">Tip: username <code>server</code> passes validation but the submit action returns an error.</small>
+</form>
+<pre>model() = {{ model() | json }}</pre>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Submissions" />

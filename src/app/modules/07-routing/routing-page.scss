@@ -1,0 +1,26 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.tabs {
+  @include m.flex-row(v.$space-1);
+  margin-bottom: v.$space-3;
+
+  a {
+    padding: v.$space-1 v.$space-2;
+    border: 1px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    text-decoration: none;
+
+    &.active {
+      background: v.$color-primary;
+      color: #fff;
+    }
+  }
+}
+
+.outlet {
+  margin-top: v.$space-3;
+  padding: v.$space-3;
+  border: 2px dashed v.$color-border;
+  border-radius: v.$radius;
+}

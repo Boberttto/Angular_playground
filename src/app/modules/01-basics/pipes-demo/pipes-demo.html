@@ -1,0 +1,61 @@
+<table>
+  <thead>
+    <tr><th>Expression</th><th>Result</th></tr>
+  </thead>
+  <tbody>
+    <tr><td><code>now | date</code></td><td>{{ now | date }}</td></tr>
+    <tr><td><code>now | date: 'fullDate'</code></td><td>{{ now | date: 'fullDate' }}</td></tr>
+    <tr><td><code>now | date: 'HH:mm:ss' : 'UTC'</code></td><td>{{ now | date: 'HH:mm:ss' : 'UTC' }}</td></tr>
+    <tr><td><code>now | date: 'fullDate' | uppercase</code> (chaining, left → right)</td><td>{{ now | date: 'fullDate' | uppercase }}</td></tr>
+    <tr><td><code>amount | currency</code></td><td>{{ amount | currency }}</td></tr>
+    <tr><td><code>amount | currency: 'EUR'</code></td><td>{{ amount | currency: 'EUR' }}</td></tr>
+    <tr><td><code>amount | currency: 'CAD' : 'code' : '1.0-0'</code></td><td>{{ amount | currency: 'CAD' : 'code' : '1.0-0' }}</td></tr>
+    <tr><td><code>ratio | percent</code></td><td>{{ ratio | percent }}</td></tr>
+    <tr><td><code>ratio | percent: '1.1-2'</code></td><td>{{ ratio | percent: '1.1-2' }}</td></tr>
+    <tr><td><code>amount | number: '1.2-2'</code> (DecimalPipe)</td><td>{{ amount | number: '1.2-2' }}</td></tr>
+    <tr><td><code>title | titlecase</code></td><td>{{ title | titlecase }}</td></tr>
+    <tr><td><code>title | uppercase</code> / <code>lowercase</code></td><td>{{ title | uppercase }} / {{ 'LOUD' | lowercase }}</td></tr>
+    <tr><td><code>title | slice: 0 : 7</code></td><td>{{ title | slice: 0 : 7 }}</td></tr>
+    <tr><td><code>(title | slice: 4 : 8) + '!' | uppercase</code> (pipe has low precedence)</td><td>{{ (title | slice: 4 : 8) + '!' | uppercase }}</td></tr>
+  </tbody>
+</table>
+
+<h3>json (debugging)</h3>
+<pre>{{ user | json }}</pre>
+
+<h3>keyvalue</h3>
+<div class="row">
+  <div>
+    <strong>Object, default (sorted by key)</strong>
+    <ul>
+      @for (entry of scores | keyvalue; track entry.key) {
+        <li>{{ entry.key }} → {{ entry.value }}</li>
+      }
+    </ul>
+  </div>
+  <div>
+    <strong>Custom compareFn (by value desc)</strong>
+    <ul>
+      @for (entry of scores | keyvalue: byValueDesc; track entry.key) {
+        <li>{{ entry.key }} → {{ entry.value }}</li>
+      }
+    </ul>
+  </div>
+  <div>
+    <strong>Map + <code>null</code> (insertion order)</strong>
+    <ul>
+      @for (entry of ordered | keyvalue: null; track entry.key) {
+        <li>{{ entry.key }} → {{ entry.value }}</li>
+      }
+    </ul>
+  </div>
+</div>
+
+<h3>async</h3>
+<p>Observable clock: <strong>{{ clock$ | async | date: 'HH:mm:ss' }}</strong></p>
+<div class="row">
+  <button type="button" (click)="startPromise()">Start a 1.5s Promise</button>
+  <!-- @let + async: subscribe once, reuse the value. -->
+  @let result = promise() | async;
+  <span>{{ result ?? (promise() ? 'pending…' : 'not started') }}</span>
+</div>

@@ -1,0 +1,19 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.alert {
+  @include m.flex-row;
+  justify-content: space-between;
+  padding: v.$space-1 v.$space-2;
+  margin-bottom: v.$space-1;
+  border-left: 4px solid v.$color-accent;
+  background: v.$color-bg;
+
+  &.success {
+    border-color: v.$color-success;
+  }
+
+  &.warning {
+    border-color: v.$color-warning;
+  }
+}

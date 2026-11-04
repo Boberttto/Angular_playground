@@ -1,0 +1,14 @@
+@use 'variables' as v;
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid v.$color-border;
+  padding: v.$space-1 v.$space-2;
+  text-align: left;
+  vertical-align: top;
+}

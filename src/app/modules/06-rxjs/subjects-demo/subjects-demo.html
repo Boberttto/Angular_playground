@@ -1,0 +1,13 @@
+<p>
+  Subscriber <strong>A</strong> subscribes at the start. Emit a few values, then add a <strong>late</strong>
+  subscriber and look at what it receives <em>immediately</em>: nothing from <code>Subject</code>, the current value
+  from <code>BehaviorSubject</code>, the last 2 from <code>ReplaySubject(2)</code>, nothing from
+  <code>AsyncSubject</code> until <code>complete()</code>.
+</p>
+<div class="row">
+  <button type="button" (click)="emit()" [disabled]="completed()">next({{ next() }})</button>
+  <button type="button" (click)="addLateSubscriber()">Add late subscriber</button>
+  <button type="button" (click)="completeAll()" [disabled]="completed()">complete()</button>
+  <button type="button" class="secondary" (click)="reset()">Reset</button>
+</div>
+<app-log-panel title="Subscriber log" [entries]="log.entries()" (cleared)="log.clear()" />

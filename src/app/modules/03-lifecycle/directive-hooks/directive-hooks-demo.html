@@ -1,0 +1,8 @@
+<div class="row">
+  <button type="button" (click)="toggle()">{{ show() ? 'Remove' : 'Add' }} element with directive</button>
+  <button type="button" class="secondary" (click)="change()" [disabled]="!show()">Change directive input</button>
+</div>
+@if (show()) {
+  <p [appHookSpy]="'value ' + value()"><code>&lt;p [appHookSpy]="'value {{ value() }}'"&gt;</code></p>
+}
+<app-hook-trace-view title="Directive hook calls" />

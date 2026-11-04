@@ -1,0 +1,35 @@
+<app-page-header heading="04 · Signals" docsFolder="04-signals">
+  Reactive primitives: <code>signal</code>, <code>computed</code>, <code>effect</code>, <code>linkedSignal</code>,
+  <code>untracked</code>, signal inputs / <code>model</code>, and the RxJS bridge.
+</app-page-header>
+
+<app-demo-section heading="1 · signal, set/update, asReadonly, equality" docs="https://angular.dev/guide/signals">
+  <app-signal-basics />
+</app-demo-section>
+
+<app-demo-section
+  heading="2 · computed: lazy, memoized, dynamic dependencies"
+  docs="https://angular.dev/guide/signals#computed-signals"
+>
+  <app-computed-demo />
+</app-demo-section>
+
+<app-demo-section heading="3 · effect: timing, untracked, onCleanup, injector" docs="https://angular.dev/guide/signals/effect">
+  <app-effect-demo />
+</app-demo-section>
+
+<app-demo-section heading="4 · linkedSignal (both forms + write-back)" docs="https://angular.dev/guide/signals/linked-signal">
+  <app-linked-signal-demo />
+</app-demo-section>
+
+<app-demo-section heading="5 · Signal inputs and model()" docs="https://angular.dev/guide/components/inputs">
+  <app-inputs-model-demo />
+</app-demo-section>
+
+<app-demo-section heading="6 · toSignal / toObservable" docs="https://angular.dev/ecosystem/rxjs-interop">
+  <app-interop-demo />
+</app-demo-section>
+
+<app-demo-section heading="7 · Glitch-free vs combineLatest" docs="https://angular.dev/guide/signals#computed-signals">
+  <app-glitch-free-demo />
+</app-demo-section>

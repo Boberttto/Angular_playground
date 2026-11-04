@@ -1,0 +1,15 @@
+<span class="render-count"></span>{{ renders.mark() }}
+<p class="muted">
+  Parent (OnPush) owns a plain object <code>user = {{ '{' }} name: '{{ user.name }}' {{ '}' }}</code> passed to both children.
+</p>
+<div class="row">
+  <button type="button" class="secondary" (click)="mutate()">Mutate user.name (same ref)</button>
+  <button type="button" (click)="replace()">Replace user (new ref)</button>
+  <button type="button" class="secondary" (click)="noop()">Event that changes nothing</button>
+  <button type="button" class="secondary" (click)="markForCheck()">markForCheck() on OnPush child</button>
+</div>
+<div class="cards">
+  <app-user-card-eager [user]="user" />
+  <app-user-card-onpush [user]="user" />
+</div>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" />

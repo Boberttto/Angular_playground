@@ -1,0 +1,26 @@
+<p>
+  Each click emits an id into a <code>Subject</code>; each lane maps it to a fake 1.5&nbsp;s request with a
+  different flattening operator. Click <strong>several times quickly</strong>.
+</p>
+<div class="row">
+  <button type="button" (click)="fire()">Click → fire request</button>
+  <button type="button" class="secondary" (click)="reset()">Reset</button>
+  <span class="legend">
+    <span class="chip queued">queued</span><span class="chip running">running</span>
+    <span class="chip done">done</span><span class="chip cancelled">cancelled</span>
+    <span class="chip ignored">ignored</span>
+  </span>
+</div>
+@for (lane of lanes; track lane.name) {
+  <div class="lane">
+    <div class="name">
+      <code>{{ lane.name }}</code>
+      <small class="muted">{{ lane.rule }}</small>
+    </div>
+    <div class="chips">
+      @for (entry of entries(lane); track entry[0]) {
+        <span class="chip" [class]="entry[1]" [title]="entry[1]">#{{ entry[0] }}</span>
+      }
+    </div>
+  </div>
+}

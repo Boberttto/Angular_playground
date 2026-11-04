@@ -1,0 +1,28 @@
+<div class="row">
+  <button type="button" (click)="onClick($event)">(click)="onClick($event)"</button>
+  <a href="https://angular.dev" (click)="onLinkClick($event)">A link that does not navigate</a>
+</div>
+
+<h3>Key filters + template reference variable</h3>
+<!-- #todoInput refers to the HTMLInputElement (no component/directive on it). -->
+<div class="row">
+  <input
+    #todoInput
+    placeholder="Type, then press Enter"
+    (keyup.enter)="addTodo(todoInput)"
+    (keyup.shift.enter)="onShiftEnter()"
+  />
+  <!-- The same reference variable is usable anywhere in this template. -->
+  <button type="button" class="secondary" (click)="addTodo(todoInput)">Add</button>
+  <span class="muted">Live value through the ref: "{{ todoInput.value }}" (only refreshed when the view is checked!)</span>
+</div>
+<ul>
+  @for (todo of todos(); track $index) {
+    <li>{{ todo }}</li>
+  }
+</ul>
+
+<h3>key vs code</h3>
+<input placeholder="Press any key (keydown)" (keydown)="onKey($event)" />
+
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Events" />

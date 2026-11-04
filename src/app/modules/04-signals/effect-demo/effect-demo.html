@@ -1,0 +1,14 @@
+<div class="row">
+  <span>user = <strong>{{ user() }}</strong>, clicks = <strong>{{ clicks() }}</strong></span>
+  <button type="button" (click)="setUserThreeTimes()">set(user) ×3 synchronously</button>
+  <button type="button" class="secondary" (click)="click()">clicks + 1 (untracked)</button>
+</div>
+<div class="row">
+  <label>Search (onCleanup debounce): <input [value]="query()" (input)="onQuery($event)" /></label>
+</div>
+<div class="row">
+  <button type="button" class="secondary" (click)="toggleLateEffect()">
+    {{ lateEffectActive() ? 'Destroy' : 'Create' }} effect outside constructor ({{ '{' }} injector {{ '}' }})
+  </button>
+</div>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" />

@@ -1,0 +1,14 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.card {
+  @include m.flex-col(v.$space-1);
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: v.$space-2 v.$space-3;
+  min-width: 190px;
+
+  &.scoped {
+    border-color: v.$color-accent;
+  }
+}

@@ -1,0 +1,30 @@
+// Shared by the small demo components of module 10 (each one uses styleUrl: '../cd-card.scss').
+@use 'variables' as v;
+
+:host {
+  display: block;
+  border: 2px solid v.$color-border;
+  border-radius: v.$radius;
+  padding: v.$space-2 v.$space-3;
+  min-width: 200px;
+}
+
+:host(.eager) {
+  border-color: v.$color-warning;
+}
+
+:host(.onpush) {
+  border-color: v.$color-accent;
+}
+
+.render-count {
+  float: right;
+  font-family: v.$font-mono;
+  font-size: 0.8rem;
+  padding: 0 v.$space-1;
+  border-radius: v.$radius-sm;
+}
+
+.name {
+  font-weight: 600;
+}

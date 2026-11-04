@@ -1,0 +1,17 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: block;
+}
+
+.cards {
+  @include m.flex-row(v.$space-3);
+  margin-top: v.$space-3;
+}
+
+.render-count {
+  float: right;
+  font-family: v.$font-mono;
+  font-size: 0.8rem;
+}

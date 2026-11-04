@@ -1,0 +1,21 @@
+@use 'variables' as v;
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th,
+td {
+  text-align: left;
+  border-bottom: 1px solid v.$color-border;
+  padding: v.$space-1 v.$space-2;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.row > div {
+  min-width: 200px;
+}

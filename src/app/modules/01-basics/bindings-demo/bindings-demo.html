@@ -1,0 +1,51 @@
+<div class="grid">
+  <div>
+    <h3>Interpolation <code ngNonBindable>{{ }}</code></h3>
+    <label>Name: <input [value]="name()" (input)="name.set($any($event.target).value)" /></label>
+    <p>Hello {{ name() }}! Length = {{ name().length }}, upper = {{ name().toUpperCase() }}</p>
+    <!-- Interpolation inside an attribute value is a property binding in disguise. -->
+    <img alt="Avatar of {{ name() }}" src="favicon.ico" width="16" height="16" />
+    <p class="muted">{{ plainField }} · null/undefined render as empty: [{{ null }}]</p>
+  </div>
+
+  <div>
+    <h3>Property binding <code>[prop]</code></h3>
+    <!-- Sets the DOM PROPERTY HTMLButtonElement.disabled, not the HTML attribute. -->
+    <button type="button" [disabled]="disabled()">I can be disabled</button>
+    <button type="button" class="secondary" (click)="toggleDisabled()">Toggle</button>
+    <p class="muted">disabled() = {{ disabled() }}</p>
+  </div>
+
+  <div>
+    <h3>Attribute binding <code>[attr.x]</code></h3>
+    <!-- colspan has no matching DOM property name (it is colSpan), so bind the attribute. -->
+    <table>
+      <tr>
+        <td [attr.colspan]="colspan()" class="cell">colspan = {{ colspan() }}</td>
+      </tr>
+      <tr>
+        <td class="cell">A</td>
+        <td class="cell">B</td>
+        <td class="cell">C</td>
+      </tr>
+    </table>
+    <button type="button" class="secondary" (click)="colspan.set(colspan() === 3 ? 1 : colspan() + 1)">
+      colspan++
+    </button>
+    <!-- ARIA attributes can be bound directly (v22 docs), or with [attr.aria-label]. -->
+    <button type="button" [attr.aria-label]="ariaLabel()" [attr.data-test]="null">aria-label set</button>
+    <p class="muted">Binding <code>null</code> removes the attribute (see data-test in DevTools).</p>
+  </div>
+
+  <div>
+    <h3>Class & style bindings</h3>
+    <label><input type="checkbox" [checked]="highlighted()" (change)="highlighted.set(!highlighted())" /> highlighted</label>
+    <label>size <input type="range" min="10" max="32" [value]="size()" (input)="size.set(+$any($event.target).value)" /></label>
+    <p class="demo" [class.highlighted]="highlighted()" [style.font-size.px]="size()">
+      [class.highlighted] + [style.font-size.px]
+    </p>
+    <p class="demo static" [class]="classMap()" [style]="styleMap()">
+      static class + [class]=object + [style]=object (classes are merged)
+    </p>
+  </div>
+</div>

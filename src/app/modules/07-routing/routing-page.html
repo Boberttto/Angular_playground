@@ -1,0 +1,39 @@
+<app-page-header heading="07 · Routing" docsFolder="07-routing">
+  Child routes, links, params (input binding vs ActivatedRoute), guards, resolvers, redirects,
+  lazy loading, titles, route providers and router events — all on this page.
+</app-page-header>
+
+<app-demo-section heading="Demo controls (used by the guards)" docs="https://angular.dev/guide/routing/route-guards">
+  <div class="row">
+    <label><input type="checkbox" [checked]="state.loggedIn()" (change)="state.loggedIn.set(!state.loggedIn())" /> Logged in (authGuard)</label>
+    <label><input type="checkbox" [checked]="state.betaDashboard()" (change)="state.betaDashboard.set(!state.betaDashboard())" /> Beta dashboard flag (canMatch)</label>
+  </div>
+</app-demo-section>
+
+<app-demo-section heading="Child routes + RouterLinkActive" docs="https://angular.dev/guide/routing/read-route-state#detect-active-current-route-with-routerlinkactive">
+  <nav class="tabs">
+    <!-- routerLinkActive adds the class when the link's URL is active; ariaCurrentWhenActive helps a11y -->
+    <a routerLink="products" routerLinkActive="active" ariaCurrentWhenActive="page">Products</a>
+    <a routerLink="admin" routerLinkActive="active">Admin (canActivate)</a>
+    <a routerLink="legacy-admin" routerLinkActive="active">Legacy guard</a>
+    <a routerLink="editor" routerLinkActive="active">Editor (canDeactivate)</a>
+    <a routerLink="dashboard" routerLinkActive="active">Dashboard (canMatch)</a>
+    <a routerLink="scoped" routerLinkActive="active">Route providers</a>
+    <a routerLink="legacy-product/4" routerLinkActive="active">Function redirect</a>
+  </nav>
+  <div class="row">
+    <button type="button" (click)="goToProductWithExtras()">router.navigate(['products', 2], &#123; queryParams, fragment &#125;)</button>
+    <button type="button" class="secondary" (click)="goByUrl()">router.navigateByUrl('/routing/legacy-product/3')</button>
+  </div>
+  <div class="outlet">
+    <!-- Child components render here -->
+    <router-outlet />
+  </div>
+</app-demo-section>
+
+<app-demo-section heading="Router events" docs="https://angular.dev/guide/routing/lifecycle-and-events">
+  <p class="muted">
+    Watch RouteConfigLoadStart (lazy chunk), GuardsCheck*, Resolve* (300 ms resolver) and NavigationCancel (guard said no).
+  </p>
+  <app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="router.events" />
+</app-demo-section>

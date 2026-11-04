@@ -1,0 +1,28 @@
+@use 'variables' as v;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: v.$space-4;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+.cell {
+  border: 1px solid v.$color-border;
+  padding: v.$space-1 v.$space-2;
+}
+
+.highlighted {
+  background: v.$color-primary-soft;
+}
+
+.big {
+  font-weight: bold;
+}
+
+.static {
+  font-style: italic;
+}

@@ -1,0 +1,11 @@
+@use 'variables' as v;
+
+:host {
+  display: block;
+  margin-bottom: v.$space-5;
+}
+
+h1 {
+  margin-top: 0;
+  color: v.$color-primary;
+}

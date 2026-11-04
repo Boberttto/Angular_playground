@@ -1,0 +1,9 @@
+<header>
+  <ng-content select="[card-title]">Untitled card (fallback)</ng-content>
+</header>
+<div class="body">
+  <ng-content />
+</div>
+<footer>
+  <ng-content select="app-card-footer, [card-footer]">No footer (fallback)</ng-content>
+</footer>

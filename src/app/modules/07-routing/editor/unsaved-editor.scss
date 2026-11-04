@@ -1,0 +1,10 @@
+@use 'variables' as v;
+
+textarea {
+  width: 100%;
+  margin-bottom: v.$space-2;
+}
+
+.warning {
+  color: v.$color-warning;
+}

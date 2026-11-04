@@ -1,0 +1,28 @@
+<app-page-header heading="06 · RxJS" docsFolder="06-rxjs">
+  Observables are lazy push-based streams. Learn the Subject family, the four flattening operators, sharing,
+  combination, how to avoid leaks, and how RxJS interoperates with signals.
+</app-page-header>
+
+<app-demo-section heading="Subject, BehaviorSubject, ReplaySubject, AsyncSubject — late subscribers" docs="https://rxjs.dev/guide/subject">
+  <app-subjects-demo />
+</app-demo-section>
+
+<app-demo-section heading="switchMap vs mergeMap vs concatMap vs exhaustMap — visual timeline" docs="https://rxjs.dev/api/operators/switchMap">
+  <app-flattening-timeline />
+</app-demo-section>
+
+<app-demo-section heading="Typeahead: debounceTime, distinctUntilChanged, filter, switchMap, catchError" docs="https://angular.dev/ecosystem/rxjs-interop">
+  <app-typeahead />
+</app-demo-section>
+
+<app-demo-section heading="Cold vs hot (shareReplay) · combineLatest, withLatestFrom, forkJoin" docs="https://rxjs.dev/api/operators/shareReplay">
+  <app-sharing-demo />
+</app-demo-section>
+
+<app-demo-section heading="Unsubscribe strategies & memory leaks" docs="https://angular.dev/ecosystem/rxjs-interop/take-until-destroyed">
+  <app-unsubscribe-demo />
+</app-demo-section>
+
+<app-demo-section heading="Interop: rxResource · outputFromObservable" docs="https://angular.dev/ecosystem/rxjs-interop#using-rxresource-for-async-data">
+  <app-interop-demo />
+</app-demo-section>

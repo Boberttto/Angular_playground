@@ -1,0 +1,18 @@
+@use 'variables' as v;
+
+.row {
+  margin-bottom: v.$space-2;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  text-align: left;
+  padding: v.$space-1 v.$space-2;
+  border-bottom: 1px solid v.$color-border;
+}

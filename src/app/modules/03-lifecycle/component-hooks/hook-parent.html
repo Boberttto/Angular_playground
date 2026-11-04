@@ -1,0 +1,24 @@
+<div class="controls">
+  <button type="button" (click)="changeLabel()">Change [label] input</button>
+  <button type="button" (click)="incrementViaBinding()">legacyCount +1 (binding)</button>
+  <button type="button" class="secondary" (click)="setDirectly()" [disabled]="!showChild()">
+    Set legacyCount directly (TS)
+  </button>
+  <button type="button" (click)="changeProjected()">Change projected content</button>
+  <button type="button" (click)="toggleChild()">{{ showChild() ? 'Hide' : 'Show' }} child</button>
+  <button type="button" class="secondary" (click)="noop()">Event that changes nothing</button>
+</div>
+
+<div class="layout">
+  <div class="stage">
+    <p class="muted">Parent state: label="{{ label() }}", count={{ count() }}</p>
+    @if (showChild()) {
+      <app-hook-child [label]="label()" [legacyCount]="count()">
+        <em #projected>{{ projectedText() }}</em>
+      </app-hook-child>
+    } @else {
+      <p class="muted">Child destroyed.</p>
+    }
+  </div>
+  <app-hook-trace-view />
+</div>

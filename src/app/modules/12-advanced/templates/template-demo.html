@@ -1,0 +1,25 @@
+<h4>1 · Local template reused with different contexts</h4>
+<!-- An <ng-template> renders nothing by itself: it is a blueprint (TemplateRef) -->
+<ng-template #badge let-text let-color="color">
+  <span class="badge" [style.background]="color">{{ text }}</span>
+</ng-template>
+<p>
+  <ng-container *ngTemplateOutlet="badge; context: { $implicit: 'New', color: '#e7f6ee' }" />
+  <ng-container *ngTemplateOutlet="badge; context: { $implicit: 'Beta', color: '#fde8ee' }" />
+</p>
+
+<h4>2 · Parent-provided item template (contentChild(TemplateRef) + context)</h4>
+<app-smart-list [items]="users">
+  <ng-template let-user let-i="index"><strong>{{ i + 1 }}.</strong> {{ user.name }} <em class="muted">({{ user.role }})</em></ng-template>
+</app-smart-list>
+<p class="muted">Without a projected template, the list uses its own fallback:</p>
+<app-smart-list [items]="tags" />
+
+<h4>3 · Multi-slot projection, fallback content and ngProjectAs</h4>
+<app-panel-card>
+  <span panel-title>Projected title (select="[panel-title]")</span>
+  Default slot content (no select).
+  <!-- ngProjectAs makes the ng-container match the footer selector -->
+  <ng-container ngProjectAs="[panel-footer]">Footer via ngProjectAs</ng-container>
+</app-panel-card>
+<app-panel-card>Only default content: title and footer show their fallback.</app-panel-card>

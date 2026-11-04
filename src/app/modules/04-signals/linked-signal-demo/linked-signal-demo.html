@@ -1,0 +1,21 @@
+<p>Pick an option, then swap the option list. "Sea" (id 2) exists in both lists.</p>
+<div class="row">
+  @for (o of options(); track o.id) {
+    <button type="button" class="secondary" (click)="choose(o.id)">{{ o.name }}</button>
+  }
+  <button type="button" (click)="swapOptions()">Swap option list</button>
+</div>
+<ul>
+  <li><code>linkedSignal(() =&gt; options()[0])</code> → <strong>{{ simpleSelected().name }}</strong> (always resets)</li>
+  <li>
+    <code>linkedSignal({{ '{' }} source, computation(opts, previous) {{ '}' }})</code> →
+    <strong>{{ smartSelected().name }}</strong> (keeps the choice if its id still exists)
+  </li>
+</ul>
+
+<h3>Write-back with the <code>set</code> option</h3>
+<div class="row">
+  <span>celsius = <strong>{{ celsius() }}</strong></span>
+  <button type="button" class="secondary" (click)="celsius.set(celsius() + 5)">celsius + 5</button>
+  <label>fahrenheit <input type="number" [value]="fahrenheit()" (change)="onFahrenheit($event)" /></label>
+</div>

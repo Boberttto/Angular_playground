@@ -1,0 +1,27 @@
+@use 'variables' as v;
+
+:host {
+  display: inline-block;
+  position: relative;
+  padding: v.$space-1 v.$space-3;
+  border-radius: v.$radius;
+  background: v.$color-accent;
+  color: #fff;
+  cursor: pointer;
+  user-select: none;
+}
+
+// The Tooltip host directive sets data-tooltip + .tooltip-visible on OUR host element.
+:host(.tooltip-visible)::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  top: 110%;
+  white-space: nowrap;
+  background: v.$color-code-bg;
+  color: v.$color-code-text;
+  padding: 2px v.$space-2;
+  border-radius: v.$radius-sm;
+  font-size: 0.8rem;
+  z-index: 1;
+}

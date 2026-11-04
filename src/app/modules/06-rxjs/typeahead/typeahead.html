@@ -1,0 +1,23 @@
+<p>
+  Type a framework name (try <code>an</code>, <code>sv</code>, or <code>error</code>). Pipeline:
+  <code>toObservable → map(trim) → debounceTime(300) → distinctUntilChanged → filter(len ≥ 2) → switchMap(search +
+    catchError) → toSignal</code>.
+</p>
+<div class="row">
+  <input type="search" placeholder="Search…" [value]="query()" (input)="onInput($event)" />
+  @if (state().loading) {
+    <span class="muted">loading…</span>
+  }
+</div>
+@if (state().error; as error) {
+  <p class="error">{{ error }}</p>
+} @else {
+  <ul>
+    @for (r of state().results; track r) {
+      <li>{{ r }}</li>
+    } @empty {
+      <li class="muted">No results</li>
+    }
+  </ul>
+}
+<app-log-panel title="Pipeline log" [entries]="log.entries()" (cleared)="log.clear()" />

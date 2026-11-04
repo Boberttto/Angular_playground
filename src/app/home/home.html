@@ -1,0 +1,21 @@
+<h1>Angular Playground</h1>
+<p>
+  A hands-on playground to practise Angular (v22) — from the basics to advanced topics — and to
+  prepare for technical interviews.
+</p>
+<ol class="steps">
+  <li>Open a module below and play with the live demos.</li>
+  <li>Read <code>docs/&lt;module&gt;/theory.md</code> (every claim links to the official docs).</li>
+  <li>Do the exercises from <code>docs/&lt;module&gt;/exercises.md</code> in the <a routerLink="/sandbox">Sandbox</a>.</li>
+  <li>Check <code>solutions.md</code>, then drill <code>docs/interview/</code>.</li>
+</ol>
+
+<div class="grid">
+  @for (mod of modules; track mod.path) {
+    <a class="card" [routerLink]="['/', mod.path]">
+      <span class="num">{{ mod.folder.slice(0, 2) }}</span>
+      <strong>{{ mod.title }}</strong>
+      <span class="muted">{{ mod.summary }}</span>
+    </a>
+  }
+</div>

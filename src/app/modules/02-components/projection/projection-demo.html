@@ -1,0 +1,39 @@
+<div class="grid">
+  <app-card>
+    <!-- matches select="[card-title]" -->
+    <span card-title>Multi-slot card</span>
+    <!-- no select matches → default slot -->
+    <p>Body paragraph → default <code>&lt;ng-content /&gt;</code>.</p>
+    <p>Another body paragraph.</p>
+    <!-- matches select="[card-footer]" -->
+    <small card-footer>Footer via [card-footer]</small>
+  </app-card>
+
+  <app-card>
+    <!-- ngProjectAs: an h4 that pretends to be [card-title] (static value only) -->
+    <h4 ngProjectAs="[card-title]">Title via ngProjectAs</h4>
+    <p>No footer given → fallback content of the footer slot is shown.</p>
+  </app-card>
+
+  <app-card>
+    <p>No title, no footer: both fallbacks shown.</p>
+  </app-card>
+</div>
+
+<h3>Conditional content: ng-content in &#64;if vs ng-template</h3>
+<p class="muted">
+  Reload the page and look at the log BEFORE opening anything: the naive spy is already created. Open/close the
+  lazy expander: its spy is created and destroyed each time.
+</p>
+<div class="col">
+  <app-naive-expander>
+    <app-spy name="naive" />
+  </app-naive-expander>
+
+  <app-lazy-expander>
+    <ng-template let-count>
+      <app-spy name="lazy" /> opened {{ count }} time(s) (value from the template context)
+    </ng-template>
+  </app-lazy-expander>
+</div>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Spy lifecycle" />

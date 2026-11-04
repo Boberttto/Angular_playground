@@ -1,0 +1,7 @@
+<p><code>toSignal(interval(1000))</code> → <strong>{{ seconds() }}</strong> s</p>
+
+<label>Filter fruits (debounced 300ms through RxJS): <input [value]="query()" (input)="onQuery($event)" /></label>
+<p>{{ results().join(', ') || '—' }}</p>
+
+<button type="button" (click)="setBurst()">Set a signal 3× synchronously</button>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" />

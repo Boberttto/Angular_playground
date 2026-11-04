@@ -1,0 +1,13 @@
+<div class="header">
+  <strong>{{ title() }}</strong>
+  <button class="secondary" type="button" (click)="cleared.emit()">Clear</button>
+</div>
+<div class="box" #box>
+  @for (entry of entries(); track entry.id) {
+    <div class="entry" [class]="entry.kind">
+      <span class="time">{{ entry.time }}</span> {{ entry.message }}
+    </div>
+  } @empty {
+    <div class="empty">Nothing logged yet.</div>
+  }
+</div>

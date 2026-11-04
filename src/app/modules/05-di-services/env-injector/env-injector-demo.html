@@ -1,0 +1,17 @@
+<p>
+  An injector owns the instances it creates. Destroying the injector destroys them. Here we build an
+  <code>EnvironmentInjector</code> by hand with <code>createEnvironmentInjector([ReportCache], parent)</code> and
+  destroy it with <code>.destroy()</code>: this is another way (besides scoping to a component) to control a
+  service's lifetime.
+</p>
+<div class="row">
+  <button type="button" (click)="createInjector()" [disabled]="hasChild()">1 · createEnvironmentInjector()</button>
+  <button type="button" (click)="useService()" [disabled]="!hasChild()">2 · injector.get(ReportCache)</button>
+  <button type="button" (click)="destroyInjector()" [disabled]="!hasChild()">3 · injector.destroy()</button>
+</div>
+<p>Injection context rules:</p>
+<div class="row">
+  <button type="button" class="secondary" (click)="injectOutsideContext()">inject() in a click handler</button>
+  <button type="button" class="secondary" (click)="injectWithRunInContext()">runInInjectionContext(injector, …)</button>
+</div>
+<app-log-panel title="Manual injector log" [entries]="log.entries()" (cleared)="log.clear()" />

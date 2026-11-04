@@ -1,0 +1,8 @@
+<span class="avatar">{{ avatarEmoji() }}</span>
+<div>
+  <strong>{{ name() }}</strong>
+  @if (nickname()) {
+    <em>“{{ nickname() }}”</em>
+  }
+  <div class="muted">{{ role() }} · <span class="stars">{{ stars() }}</span> (level {{ level() }})</div>
+</div>

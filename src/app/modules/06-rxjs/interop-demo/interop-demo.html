@@ -1,0 +1,24 @@
+<h3>rxResource</h3>
+<div class="row">
+  @for (id of [1, 2, 3, 4]; track id) {
+    <button type="button" [class.secondary]="bookId() !== id" (click)="bookId.set(id)">Book {{ id }}</button>
+  }
+  <button type="button" class="secondary" (click)="book.reload()">reload()</button>
+</div>
+<p>
+  status: <code>{{ book.status() }}</code> · isLoading: <code>{{ book.isLoading() }}</code> ·
+  @if (book.hasValue()) {
+    value: <strong>{{ book.value().title }}</strong>
+  } @else if (book.error(); as err) {
+    <span class="error">error: {{ err.message }}</span>
+  } @else {
+    <span class="muted">no value yet</span>
+  }
+</p>
+
+<h3>outputFromObservable</h3>
+<div class="row">
+  <label>Countdown from <input type="number" min="1" max="9" [value]="from()" (change)="onFromChange($event)" /></label>
+  <app-countdown [from]="from()" (tick)="onTick($event)" />
+</div>
+<app-log-panel title="Output log" [entries]="log.entries()" (cleared)="log.clear()" />

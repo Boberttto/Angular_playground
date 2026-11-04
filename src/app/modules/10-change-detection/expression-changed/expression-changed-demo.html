@@ -1,0 +1,10 @@
+<div class="row">
+  <button type="button" class="secondary" (click)="mode.set('plain')">Mount with plain field (NG0100 → console)</button>
+  <button type="button" (click)="mode.set('signal')">Mount with signal (no error)</button>
+  <button type="button" class="secondary" (click)="mode.set(null)">Unmount</button>
+</div>
+@switch (mode()) {
+  @case ('plain') { <app-status-host /> }
+  @case ('signal') { <app-status-host [useSignal]="true" /> }
+}
+  

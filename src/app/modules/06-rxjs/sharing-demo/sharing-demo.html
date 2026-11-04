@@ -1,0 +1,20 @@
+<p>
+  <strong>Cold vs hot:</strong> a cold Observable re-runs its producer for each subscriber (that's why two
+  <code>| async</code> on the same <code>http.get()</code> make two requests). <code>shareReplay(1)</code> multicasts
+  one execution and replays the last value to late subscribers.
+</p>
+<div class="row">
+  <button type="button" (click)="subscribeTwiceCold()">Subscribe twice to cold$</button>
+  <button type="button" (click)="subscribeTwiceShared()">Subscribe twice to shared$</button>
+</div>
+<p>
+  <strong>Combination:</strong> <code>combineLatest</code> waits for every source to emit once, then emits on every
+  change; <code>withLatestFrom</code> only emits when <code>a$</code> emits; <code>forkJoin</code> waits for all to
+  <em>complete</em>.
+</p>
+<div class="row">
+  <button type="button" class="secondary" (click)="emitA()">a$.next()</button>
+  <button type="button" class="secondary" (click)="emitB()">b$.next()</button>
+  <button type="button" class="secondary" (click)="runForkJoin()">forkJoin</button>
+</div>
+<app-log-panel title="Sharing & combination log" [entries]="log.entries()" (cleared)="log.clear()" />

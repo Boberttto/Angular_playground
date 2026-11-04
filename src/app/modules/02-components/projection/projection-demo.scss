@@ -1,0 +1,16 @@
+@use 'variables' as v;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: v.$space-3;
+}
+
+h3 {
+  font-size: 1rem;
+  margin-top: v.$space-4;
+}
+
+h4 {
+  margin: 0;
+}

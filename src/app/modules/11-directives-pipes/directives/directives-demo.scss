@@ -1,0 +1,23 @@
+@use 'variables' as v;
+
+h3 {
+  font-size: 1rem;
+  margin-top: v.$space-4;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: v.$space-3;
+}
+
+.pill {
+  display: inline-block;
+  background: v.$color-primary-soft;
+  padding: v.$space-1 v.$space-2;
+  border-radius: v.$radius;
+}
+
+.is-hovered {
+  outline: 1px dashed v.$color-accent;
+}

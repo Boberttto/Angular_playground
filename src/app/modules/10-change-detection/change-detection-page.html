@@ -1,0 +1,34 @@
+<app-page-header heading="10 · Change detection" docsFolder="10-change-detection">
+  Angular 22: zoneless by default, OnPush by default. Every demo component shows a
+  <code>rendered N×</code> badge (flashes when its template is re-evaluated).
+</app-page-header>
+
+<app-demo-section
+  heading="1 · Eager vs OnPush with a mutable object"
+  docs="https://angular.dev/best-practices/skipping-subtrees"
+>
+  <app-strategies-demo />
+</app-demo-section>
+
+<app-demo-section
+  heading="2 · What triggers change detection without zone.js?"
+  docs="https://angular.dev/guide/zoneless#requirements-for-zoneless-compatibility"
+>
+  <app-zoneless-triggers />
+</app-demo-section>
+
+<app-demo-section
+  heading="3 · Signals: targeted (fine-grained) refresh"
+  docs="https://angular.dev/guide/signals#reading-signals-in-onpush-components"
+>
+  <app-fine-grained-demo />
+</app-demo-section>
+
+<app-demo-section heading="4 · detach / detectChanges / reattach" docs="https://angular.dev/api/core/ChangeDetectorRef">
+  <app-detachable-ticker />
+</app-demo-section>
+
+<app-demo-section heading="5 · ExpressionChangedAfterItHasBeenChecked (NG0100)" docs="https://angular.dev/errors/NG0100">
+  <p class="muted">Open the browser console, then mount the plain-field version. Dev mode only.</p>
+  <app-expression-changed-demo />
+</app-demo-section>

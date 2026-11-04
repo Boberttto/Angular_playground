@@ -1,0 +1,14 @@
+@use 'variables' as v;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: v.$space-3;
+  padding: v.$space-2;
+}
+
+// ::ng-deep demo (discouraged, backwards compatibility only): pierces into child component views.
+// Scoped under :host so it does not become fully global.
+:host ::ng-deep app-emulated-box button {
+  outline: 2px solid v.$color-accent;
+}

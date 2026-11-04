@@ -1,0 +1,10 @@
+<span class="render-count"></span>{{ renders.mark() }}
+<div class="row">
+  <button type="button" (click)="toggleAuto()">{{ autoTick() ? 'Stop' : 'Start' }} timer on counter #2 (1/s)</button>
+  <button type="button" class="secondary" (click)="bumpThird()">Parent click: counter #3 + 1</button>
+</div>
+<div class="cards">
+  <app-signal-counter label="#1" [value]="counters[0]" />
+  <app-signal-counter label="#2 (timer)" [value]="counters[1]" />
+  <app-signal-counter label="#3" [value]="counters[2]" />
+</div>

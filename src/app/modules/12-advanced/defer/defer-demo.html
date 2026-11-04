@@ -1,0 +1,73 @@
+<div class="grid">
+  <div class="cell">
+    <h4><code>on idle</code> (default trigger)</h4>
+    @defer {
+      <app-heavy-widget label="idle" />
+    } @placeholder {
+      <span class="ph">Waiting for requestIdleCallback…</span>
+    }
+  </div>
+
+  <div class="cell">
+    <h4><code>on immediate</code></h4>
+    @defer (on immediate) {
+      <app-heavy-widget label="immediate" />
+    } @placeholder {
+      <span class="ph">Loads right after the non-deferred content rendered.</span>
+    }
+  </div>
+
+  <div class="cell">
+    <h4><code>on timer(2s)</code> + &#64;loading (after; minimum)</h4>
+    @defer (on timer(2s)) {
+      <app-heavy-widget label="timer" />
+    } @placeholder (minimum 500ms) {
+      <span class="ph">Timer running (2 s)…</span>
+    } @loading (after 100ms; minimum 1s) {
+      <span class="ph">⏳ Loading chunk (shown ≥ 1 s to avoid flicker)…</span>
+    } @error {
+      <span class="error">Chunk failed to load.</span>
+    }
+  </div>
+
+  <div class="cell">
+    <h4><code>on interaction</code> + <code>prefetch on idle</code></h4>
+    @defer (on interaction; prefetch on idle) {
+      <app-heavy-widget label="interaction" />
+    } @placeholder {
+      <!-- the placeholder (single root element) is the interaction target -->
+      <button type="button" class="secondary">Click me to render (JS already prefetched)</button>
+    }
+  </div>
+
+  <div class="cell">
+    <h4><code>on hover</code></h4>
+    @defer (on hover) {
+      <app-heavy-widget label="hover" />
+    } @placeholder {
+      <div class="ph hover-target">Hover me</div>
+    }
+  </div>
+
+  <div class="cell">
+    <h4><code>when</code> condition</h4>
+    <button type="button" class="secondary" (click)="ready.set(true)">ready.set(true)</button>
+    @defer (when ready()) {
+      <app-heavy-widget label="when" />
+    } @placeholder {
+      <span class="ph">Waiting for ready() — one-way: setting it back to false won't revert.</span>
+    }
+  </div>
+</div>
+
+<div class="cell tall-spacer">
+  <h4><code>on viewport</code> — scroll this box ⤵</h4>
+  <div class="scroller">
+    <div class="spacer">↓ keep scrolling ↓</div>
+    @defer (on viewport) {
+      <app-heavy-widget label="viewport" />
+    } @placeholder {
+      <div class="ph">I'm the placeholder observed by IntersectionObserver</div>
+    }
+  </div>
+</div>
