@@ -1,0 +1,9 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: v.$space-3;
+  margin: v.$space-3 0;
+}

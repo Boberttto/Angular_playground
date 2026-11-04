@@ -1,0 +1,57 @@
+<h3>Attribute directive with <code>host</code> metadata + input()</h3>
+<div class="row">
+  <label>color <input [value]="color()" (input)="color.set($any($event.target).value)" size="10" /></label>
+</div>
+<p [appHighlight]="color()" #h="appHighlight">
+  Hover me: [appHighlight]="color()" — exportAs gives the template the instance: hovered = {{ h.hovered() }}
+</p>
+<p appHighlight defaultColor="#d7f5e3">Hover me: no value → falls back to the defaultColor input</p>
+
+<h3>Legacy: &#64;HostListener / &#64;HostBinding / &#64;Input + Renderer2</h3>
+<p appLegacyHighlight="lightblue">Hover me: same behaviour, decorator syntax</p>
+
+<h3>Renderer2 creating a node</h3>
+<div class="row">
+  <button type="button" [appBadge]="notifications()" (click)="notifications.set(notifications() + 1)">Inbox</button>
+  <span class="muted">The red badge is a &lt;span&gt; created by the directive with Renderer2.</span>
+</div>
+
+<h3>Structural directive: *appUnless</h3>
+<label><input type="checkbox" [checked]="hidden()" (change)="hidden.set(!hidden())" /> condition</label>
+<div class="grid">
+  <div>
+    <strong>Shorthand</strong>
+    <p *appUnless="hidden()" class="pill">Shown unless condition is true</p>
+  </div>
+  <div>
+    <strong>Desugared (what the compiler produces)</strong>
+    <ng-template [appUnless]="hidden()">
+      <p class="pill">Shown unless condition is true</p>
+    </ng-template>
+  </div>
+</div>
+
+<h3>Structural directive with context & microsyntax: *appRepeat</h3>
+<div class="row">
+  <button type="button" class="secondary" (click)="times.set(times() > 0 ? times() - 1 : 0)">-</button>
+  <span>{{ times() }}</span>
+  <button type="button" class="secondary" (click)="times.set(times() + 1)">+</button>
+</div>
+<div class="grid">
+  <ul>
+    <li *appRepeat="times(); let n; let isLast = last">#{{ n }}{{ isLast ? ' (last)' : '' }}</li>
+  </ul>
+  <ul>
+    <ng-template [appRepeat]="times()" let-n let-isLast="last">
+      <li>#{{ n }}{{ isLast ? ' (last)' : '' }} — desugared</li>
+    </ng-template>
+  </ul>
+</div>
+
+<h3>Directive composition API (hostDirectives)</h3>
+<div class="row">
+  <app-fancy-button tip="Tooltip + click counter come from host directives" (countChange)="onCount($event)">
+    Click / hover me
+  </app-fancy-button>
+</div>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Directive events" />

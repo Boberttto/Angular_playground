@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+:host {
+  display: block;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  margin-bottom: v.$space-2;
+}
+
+header,
+footer,
+.body {
+  padding: v.$space-1 v.$space-2;
+}
+
+header {
+  font-weight: 600;
+  background: v.$color-primary-soft;
+}
+
+footer {
+  font-size: 0.85rem;
+  color: v.$color-muted;
+  border-top: 1px solid v.$color-border;
+}

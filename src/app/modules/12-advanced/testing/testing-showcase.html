@@ -1,0 +1,16 @@
+<ul>
+  <li><code>TruncatePipe</code>: {{ longText | truncate: 30 }} — spec: <code>truncate.pipe.spec.ts</code></li>
+  <li>
+    <code>CounterStore</code> (signals): count={{ store.count() }}, double={{ store.double() }}
+    <button type="button" class="secondary" (click)="store.increment()" [disabled]="store.isMax()">+1</button>
+    <button type="button" class="secondary" (click)="store.reset()">reset</button> — spec: <code>counter-store.spec.ts</code>
+  </li>
+  <li>
+    <code>RatingBadge</code> (inputs/output):
+    <app-rating-badge label="Angular" [score]="5" (selected)="lastSelected.set($event)" />
+    <app-rating-badge label="Legacy" [score]="2" (selected)="lastSelected.set($event)" />
+    last emitted: {{ lastSelected() ?? '—' }} — spec: <code>rating-badge.spec.ts</code>
+  </li>
+  <li><code>GreetingCard</code> (mocked service in tests): <app-greeting-card name="Will" /> — spec: <code>greeting-card.spec.ts</code></li>
+  <li><code>DeferDemo</code>: spec <code>defer-demo.spec.ts</code> drives &#64;defer states manually.</li>
+</ul>

@@ -1,0 +1,18 @@
+<div class="row">
+  <label><input type="checkbox" [checked]="active()" (change)="active.set(!active())" /> active (:host(.active))</label>
+  <label><input type="checkbox" [checked]="dark()" (change)="dark.set(!dark())" /> wrap in .dark-zone (:host-context)</label>
+</div>
+<div class="grid" [class.dark-zone]="dark()">
+  <app-emulated-box [active]="active()" />
+  <app-none-box />
+  <app-shadow-box />
+</div>
+<div class="enc-demo-leak">
+  <p>I am a plain &lt;p&gt; in the PARENT template: the None component's styles reached me.</p>
+</div>
+<p class="muted">
+  Open DevTools: Emulated elements carry <code>_ngcontent-*</code>/<code>_nghost-*</code> attributes; the
+  ShadowDom box has a <code>#shadow-root</code>. Note that the None styles also reach inside the shadow root:
+  Angular adds the styles it manages (component styles) to every shadow root it creates — only the global
+  stylesheet is left out. <code>ExperimentalIsolatedShadowDom</code> (v21+) exists to prevent this.
+</p>

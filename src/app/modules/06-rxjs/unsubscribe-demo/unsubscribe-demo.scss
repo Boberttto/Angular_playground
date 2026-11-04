@@ -1,0 +1,12 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.children {
+  @include m.flex-col(v.$space-1);
+  font-family: v.$font-mono;
+  font-size: 0.85rem;
+}
+
+.counter strong {
+  font-size: 1.3rem;
+}

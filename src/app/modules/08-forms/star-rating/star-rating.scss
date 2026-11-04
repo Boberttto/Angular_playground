@@ -1,0 +1,13 @@
+@use 'variables' as v;
+
+.star {
+  background: transparent;
+  border: none;
+  color: v.$color-border;
+  font-size: 1.4rem;
+  padding: 0 2px;
+
+  &.on {
+    color: v.$color-warning;
+  }
+}

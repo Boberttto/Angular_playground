@@ -1,0 +1,30 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+h1 {
+  color: v.$color-primary;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: v.$space-3;
+  margin-top: v.$space-5;
+}
+
+.card {
+  @include m.card;
+  @include m.flex-col(v.$space-1);
+  text-decoration: none;
+  color: v.$color-text;
+  transition: border-color 0.15s;
+
+  &:hover {
+    border-color: v.$color-primary;
+  }
+}
+
+.num {
+  font-family: v.$font-mono;
+  color: v.$color-primary;
+}

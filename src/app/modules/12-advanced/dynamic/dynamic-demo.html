@@ -1,0 +1,18 @@
+<div class="row">
+  <label>message signal: <input [value]="message()" (input)="onMessageInput($event)" /></label>
+</div>
+<div class="row">
+  <button type="button" (click)="createWithBindings()">createComponent + inputBinding/outputBinding</button>
+  <button type="button" class="secondary" (click)="createWithSetInput()">createComponent + setInput</button>
+  <button type="button" class="secondary" (click)="clearAll()">clear()</button>
+</div>
+<p class="muted">Edit the message: cards created with <code>inputBinding</code> update, <code>setInput</code> ones don't.</p>
+
+<!-- Anchor for the ViewContainerRef: dynamic views are inserted as siblings AFTER it -->
+<ng-container #host />
+
+<h4>NgComponentOutlet (declarative)</h4>
+<button type="button" class="secondary" (click)="swapOutlet()">Swap component type</button>
+<ng-container *ngComponentOutlet="outletType(); inputs: outletInputs()" />
+
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Dynamic components" />

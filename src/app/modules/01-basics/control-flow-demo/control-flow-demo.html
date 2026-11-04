@@ -1,0 +1,86 @@
+<h3>&#64;if / &#64;else if / &#64;else</h3>
+<label>score: <input type="range" min="0" max="100" [value]="score()" (input)="score.set(+$any($event.target).value)" /> {{ score() }}</label>
+@if (score() >= 80) {
+  <p class="ok">Excellent (≥ 80)</p>
+} @else if (score() >= 50) {
+  <p>Passed (≥ 50)</p>
+} @else {
+  <p class="error">Failed (&lt; 50)</p>
+}
+
+<!-- "as" stores the result of the condition: handy with signals / nullable values. -->
+<button type="button" class="secondary" (click)="toggleUser()">Toggle user</button>
+@if (user(); as u) {
+  <p>Logged in as <strong>{{ u.name }}</strong> ({{ u.email }}) — <code>u</code> is narrowed to non-null.</p>
+} @else {
+  <p class="muted">No user.</p>
+}
+
+<h3>&#64;for with track + contextual variables + &#64;empty</h3>
+<div class="row">
+  <button type="button" (click)="add()">Add on top</button>
+  <button type="button" (click)="shuffle()">Shuffle</button>
+  <button type="button" (click)="reverse()">Reverse</button>
+  <button type="button" class="secondary" (click)="clear()">Clear</button>
+</div>
+<p class="muted">
+  Type something in the inputs of BOTH lists, then shuffle. With <code>track fruit.id</code> the DOM row (and
+  what you typed) moves with its item. With <code>track $index</code> rows stay in place and only the text is
+  updated, so your typed text ends up next to a different fruit.
+</p>
+<div class="lists">
+  <div>
+    <strong>track fruit.id ✅</strong>
+    <ol>
+      @for (fruit of fruits(); track fruit.id; let i = $index, first = $first, last = $last, even = $even) {
+        <li [class.even]="even">
+          {{ i }}/{{ $count }} {{ fruit.name }}
+          @if (first) { <em>(first)</em> }
+          @if (last) { <em>(last)</em> }
+          <input placeholder="note" size="6" />
+          <button type="button" class="secondary" (click)="remove(fruit.id)">✕</button>
+        </li>
+      } @empty {
+        <li class="muted">No fruits (rendered by &#64;empty)</li>
+      }
+    </ol>
+  </div>
+  <div>
+    <strong>track $index ⚠️</strong>
+    <ol>
+      @for (fruit of fruits(); track $index) {
+        <li [class.even]="$even">
+          {{ $index }}/{{ $count }} {{ fruit.name }}
+          <input placeholder="note" size="6" />
+        </li>
+      } @empty {
+        <li class="muted">No fruits</li>
+      }
+    </ol>
+  </div>
+</div>
+
+<h3>&#64;switch</h3>
+<div class="row">
+  @for (s of statuses; track s) {
+    <button type="button" [class.secondary]="s !== status()" (click)="status.set(s)">{{ s }}</button>
+  }
+</div>
+<!-- Compared with ===, no fallthrough, no "break" needed. -->
+@switch (status()) {
+  @case ('idle') { <p>💤 Waiting…</p> }
+  @case ('loading') { <p>⏳ Loading…</p> }
+  @case ('success') { <p class="ok">✅ Done!</p> }
+  @default { <p class="error">❌ Something went wrong (&#64;default)</p> }
+}
+
+<h3>&#64;let</h3>
+<!-- @let declares a read-only local variable, kept up to date like a binding. -->
+@let unitPrice = price();
+@let subtotal = unitPrice * quantity();
+@let tax = subtotal * 0.15;
+<div class="row">
+  <button type="button" class="secondary" (click)="quantity.set(quantity() + 1)">quantity++</button>
+  <span>{{ quantity() }} × {{ unitPrice }} = {{ subtotal }} + tax {{ tax }} = <strong>{{ subtotal + tax }}</strong></span>
+  <span class="muted">(computed() in the class: {{ total() }})</span>
+</div>

@@ -1,0 +1,22 @@
+@use 'variables' as v;
+
+:host {
+  display: grid;
+  grid-template-columns: v.$sidebar-width 1fr;
+  min-height: 100vh;
+}
+
+main {
+  padding: v.$space-6;
+  max-width: 1100px;
+  min-width: 0;
+}
+
+@media (max-width: 800px) {
+  :host {
+    grid-template-columns: 1fr;
+  }
+  main {
+    padding: v.$space-4;
+  }
+}

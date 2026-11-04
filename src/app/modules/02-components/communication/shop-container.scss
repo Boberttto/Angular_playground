@@ -1,0 +1,17 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: v.$space-3;
+}
+
+.box {
+  @include m.card;
+}
+
+h3 {
+  font-size: 1rem;
+  margin-top: 0;
+}

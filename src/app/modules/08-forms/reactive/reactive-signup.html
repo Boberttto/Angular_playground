@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>Username
+    <input formControlName="username" autocomplete="off" />
+  </label>
+  @let username = form.controls.username;
+  @if (username.pending) {
+    <small class="muted">Checking availability…</small>
+  }
+  @if (username.touched && username.errors) {
+    @let e = username.errors;
+    @if (e['required']) { <small class="error">Required.</small> }
+    @if (e['minlength']) { <small class="error">Min {{ e['minlength'].requiredLength }} chars.</small> }
+    @if (e['forbiddenName']) { <small class="error">"admin" is reserved (custom sync validator).</small> }
+    @if (e['usernameTaken']) { <small class="error">Already taken (async validator) — try another than john/jane/angular.</small> }
+  }
+
+  <label>Email <input type="email" formControlName="email" /></label>
+  @if (form.controls.email.touched && form.controls.email.invalid) {
+    <small class="error">A valid email is required.</small>
+  }
+
+  <fieldset formGroupName="account">
+    <legend>Account (nested FormGroup + cross-field validator)</legend>
+    <label>Password <input type="password" formControlName="password" /></label>
+    <label>Confirm <input type="password" formControlName="confirmPassword" /></label>
+    @if (form.controls.account.errors?.['passwordMismatch']) {
+      <small class="error">Passwords do not match (error is on the GROUP).</small>
+    }
+  </fieldset>
+
+  <fieldset formArrayName="skills">
+    <legend>Skills (FormArray)</legend>
+    @for (skill of skills.controls; track skill; let i = $index) {
+      <div class="row">
+        <input [formControlName]="i" />
+        <button type="button" class="secondary" (click)="removeSkill(i)">✕</button>
+      </div>
+    }
+    <button type="button" class="secondary" (click)="addSkill()">+ skill</button>
+  </fieldset>
+
+  <div class="row">
+    Rating (ControlValueAccessor): <app-star-rating formControlName="rating" />
+    <button type="button" class="secondary" (click)="toggleRating()">disable/enable</button>
+  </div>
+
+  <div class="row">
+    <button type="submit">Sign up</button>
+    <span class="muted">status: <code>{{ form.status }}</code> · dirty: {{ form.dirty }} · touched: {{ form.touched }}</span>
+  </div>
+</form>
+<pre>{{ form.getRawValue() | json }}</pre>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="valueChanges / statusChanges" />

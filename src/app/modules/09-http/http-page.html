@@ -1,0 +1,28 @@
+<app-page-header heading="09 · HTTP & resources" docsFolder="09-http">
+  HttpClient (typed requests, errors, retry), functional interceptors, HttpContext, and the signal-based
+  <code>resource()</code> / <code>rxResource()</code> / <code>httpResource()</code>.
+</app-page-header>
+
+<div class="layout">
+  <div class="demos">
+    <app-demo-section heading="Typed GET · simulated POST · HttpContext" docs="https://angular.dev/guide/http/making-requests">
+      <app-typed-requests />
+    </app-demo-section>
+
+    <app-demo-section heading="Error handling: HttpErrorResponse, catchError, retry" docs="https://angular.dev/guide/http/making-requests#handling-request-failure">
+      <app-error-handling />
+    </app-demo-section>
+
+    <app-demo-section heading="resource() vs rxResource() vs httpResource()" docs="https://angular.dev/guide/http/http-resource">
+      <app-resource-trio />
+    </app-demo-section>
+  </div>
+
+  <aside>
+    <!-- Written by loggingInterceptor (root, app.config.ts) and fakeBackendInterceptor (route level). -->
+    <app-log-panel title="HTTP log (interceptors)" [entries]="log.entries()" (cleared)="log.clear()" />
+    <p class="muted legend">
+      <code>→ / ← / ✖ / ⊘</code> = loggingInterceptor (root) · <code>🧪</code> = fakeBackendInterceptor (route).
+    </p>
+  </aside>
+</div>

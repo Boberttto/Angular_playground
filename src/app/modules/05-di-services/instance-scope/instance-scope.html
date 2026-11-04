@@ -1,0 +1,34 @@
+<p>
+  <code>CounterStore</code> is <code>&#64;Injectable(&#123; providedIn: 'root' &#125;)</code>. The two
+  <strong>grey</strong> cards inject it directly → they share the <strong>root singleton</strong>. The two
+  <strong>purple</strong> cards are wrapped in a component with <code>providers: [CounterStore]</code> → each gets
+  its <strong>own instance</strong>. Remove them and watch the log: the service's <code>ngOnDestroy()</code>,
+  its <code>DestroyRef.onDestroy()</code> callback and its <code>takeUntilDestroyed()</code> subscription all fire.
+</p>
+
+<div class="row">
+  <button type="button" (click)="showScoped.set(!showScoped())">
+    {{ showScoped() ? 'Destroy' : 'Create' }} the 2 component-scoped cards
+  </button>
+  <button type="button" class="secondary" (click)="showRoot.set(!showRoot())">
+    {{ showRoot() ? 'Remove' : 'Add' }} the 2 root cards
+  </button>
+</div>
+
+<div class="cards">
+  @if (showRoot()) {
+    <app-counter-card label="Root card A" />
+    <app-counter-card label="Root card B" />
+  }
+  @if (showScoped()) {
+    <app-scoped-counter-card label="Scoped card C" />
+    <app-scoped-counter-card label="Scoped card D" />
+  }
+</div>
+
+<p class="muted">
+  Removing the root cards does <strong>not</strong> destroy the root instance: it belongs to the root
+  EnvironmentInjector, which only dies with the application. Its count survives.
+</p>
+
+<app-log-panel title="Service lifecycle log" [entries]="log.entries()" (cleared)="log.clear()" />

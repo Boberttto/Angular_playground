@@ -1,0 +1,22 @@
+<h3>📦 {{ product().name }} <small class="muted">({{ product().price }} $)</small></h3>
+<p>{{ product().description }}</p>
+
+<table>
+  <tr><th>Source</th><th>Value</th></tr>
+  <tr><td><code>id = input()</code> (input binding)</td><td>{{ id() }}</td></tr>
+  <tr><td><code>route.paramMap</code> (observable → signal)</td><td>{{ idFromParamMap() }}</td></tr>
+  <tr [class.stale]="idFromSnapshot !== id()">
+    <td><code>route.snapshot.paramMap</code> (read once)</td>
+    <td>{{ idFromSnapshot }} @if (idFromSnapshot !== id()) { ⚠️ stale! }</td>
+  </tr>
+  <tr><td>Component instance #</td><td>{{ instanceNo }}</td></tr>
+  <tr><td><code>section</code> (static data) / <code>from</code> (query)</td><td>{{ section() }} / {{ from() ?? '—' }}</td></tr>
+  <tr><td>Fragment (<code>route.fragment</code>)</td><td>{{ fragment() ?? '—' }}</td></tr>
+</table>
+
+<p class="row">
+  <!-- '..' goes up to /routing/products, then appends the next id: same route config => instance reused -->
+  <a [routerLink]="['..', nextId()]">Next product → (same component, reused)</a>
+  <a [routerLink]="[]" fragment="reviews">#reviews (fragment)</a>
+  <a routerLink="/routing/products">Back to list</a>
+</p>

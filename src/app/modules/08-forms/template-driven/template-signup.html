@@ -1,0 +1,32 @@
+<!-- #f="ngForm" exports the NgForm directive (a FormGroup under the hood) -->
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <label>Username
+    <!-- `name` is mandatory: it is the key of the control inside NgForm -->
+    <input name="username" [(ngModel)]="username" required minlength="3" #usernameCtrl="ngModel" />
+  </label>
+  @if (usernameCtrl.touched && usernameCtrl.errors) {
+    @let e = usernameCtrl.errors;
+    @if (e['required']) { <small class="error">Required.</small> }
+    @if (e['minlength']) { <small class="error">Min 3 chars.</small> }
+  }
+
+  <label>Email
+    <input name="email" type="email" [(ngModel)]="email" required email #emailCtrl="ngModel" />
+  </label>
+  @if (emailCtrl.touched && emailCtrl.invalid) { <small class="error">A valid email is required.</small> }
+
+  <label>Password
+    <input name="password" type="password" [(ngModel)]="password" required minlength="8" />
+  </label>
+
+  <div class="row">
+    Rating (same CVA as reactive): <app-star-rating name="rating" [(ngModel)]="rating" />
+  </div>
+
+  <div class="row">
+    <button type="submit">Sign up</button>
+    <span class="muted">valid: <code>{{ f.valid }}</code> · dirty: {{ f.dirty }} · touched: {{ f.touched }}</span>
+  </div>
+</form>
+<pre>f.value = {{ f.value | json }}</pre>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Submissions" />

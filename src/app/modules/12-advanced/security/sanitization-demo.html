@@ -1,0 +1,17 @@
+<p>Raw untrusted string:</p>
+<pre>{{ untrusted }}</pre>
+
+<p><strong>Interpolation</strong> <code>{{ '{{ value }}' }}</code> → always escaped as text:</p>
+<p class="box">{{ untrusted }}</p>
+
+<p><strong><code>[innerHTML]</code></strong> → sanitized (script &amp; onerror removed, &lt;b&gt; kept; a warning is logged in dev mode):</p>
+<p class="box" [innerHTML]="untrusted"></p>
+
+<p><code>DomSanitizer.sanitize(SecurityContext.HTML, value)</code> returns:</p>
+<pre>{{ sanitizedPreview }}</pre>
+
+<p><strong><code>[href]</code></strong> with <code>javascript:</code> → prefixed with <code>unsafe:</code> (inspect the link):</p>
+<a [href]="untrustedUrl">Malicious link (does nothing)</a>
+
+<p><strong><code>bypassSecurityTrustHtml</code></strong> on a constant:</p>
+<p class="box" [innerHTML]="trustedConstant"></p>

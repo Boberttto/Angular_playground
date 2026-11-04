@@ -1,0 +1,10 @@
+<a class="brand" routerLink="/">🅰️ Angular Playground</a>
+<nav>
+  @for (mod of modules; track mod.path; let i = $index) {
+    <a [routerLink]="['/', mod.path]" routerLinkActive="active">
+      <span class="num">{{ mod.folder.slice(0, 2) }}</span> {{ mod.title }}
+    </a>
+  }
+  <hr />
+  <a routerLink="/sandbox" routerLinkActive="active">🧪 Sandbox (your exercises)</a>
+</nav>

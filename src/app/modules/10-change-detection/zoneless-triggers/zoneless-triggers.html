@@ -1,0 +1,26 @@
+<span class="render-count"></span>{{ renders.mark() }}
+<table>
+  <tbody>
+    <tr>
+      <td><button type="button" class="secondary" (click)="bumpPlain()">plain field++ in setTimeout</button></td>
+      <td>{{ plain }}</td>
+      <td class="error">❌ not rendered (until something else refreshes this view)</td>
+    </tr>
+    <tr>
+      <td><button type="button" (click)="bumpSignal()">signal.update() in setTimeout</button></td>
+      <td>{{ sig() }}</td>
+      <td>✅ signal read in template</td>
+    </tr>
+    <tr>
+      <td><button type="button" (click)="bumpPlainWithMark()">plain field++ + markForCheck()</button></td>
+      <td>{{ plainWithMark }}</td>
+      <td>✅ markForCheck</td>
+    </tr>
+    <tr>
+      <td><button type="button" (click)="bumpObservable()">subject.next() + async pipe</button></td>
+      <td>{{ subject | async }}</td>
+      <td>✅ AsyncPipe → markForCheck</td>
+    </tr>
+  </tbody>
+</table>
+<p class="muted">Tip: click the first button a few times, then any other one: the stale plain value "catches up".</p>

@@ -1,0 +1,17 @@
+<div class="row">
+  @for (id of ids; track id) {
+    <button type="button" [class.secondary]="userId() !== id" (click)="userId.set(id)">user {{ id }}</button>
+  }
+  <button type="button" [class.secondary]="userId() !== undefined" (click)="userId.set(undefined)">undefined (idle)</button>
+</div>
+<p class="muted">Switch users quickly: in-flight loads are aborted (see the HTTP log).</p>
+
+<div class="grid">
+  <app-resource-card name="resource() + fetch" [res]="withResource" />
+  <app-resource-card name="rxResource() + HttpClient" [res]="withRxResource" />
+  <app-resource-card name="httpResource()" [res]="withHttpResource" />
+</div>
+<p class="muted">
+  httpResource extras: statusCode = {{ withHttpResource.statusCode() ?? '–' }}, content-type =
+  {{ withHttpResource.headers()?.get('content-type') ?? '–' }}
+</p>

@@ -1,0 +1,38 @@
+<h3>viewChild (template ref + read)</h3>
+<div class="row">
+  <input #nameInput placeholder="I will be focused" />
+  <button type="button" (click)="focusName()">Focus via viewChild</button>
+</div>
+
+<h3>viewChildren</h3>
+<div class="row">
+  @for (label of chipLabels(); track $index) {
+    <app-chip [label]="label" />
+  }
+</div>
+<div class="row">
+  <button type="button" class="secondary" (click)="addChip()">Add chip</button>
+  <button type="button" class="secondary" (click)="removeChip()">Remove chip</button>
+  <button type="button" class="secondary" (click)="logFirstChip()">Log first chip host element</button>
+</div>
+<div class="row">
+  <span>computed() over viewChildren: <strong>{{ chipCount() }}</strong> chip(s)</span>
+  <button type="button" class="secondary" (click)="logLabels()">Log labels read through the query</button>
+</div>
+
+<h3>contentChildren (compound component)</h3>
+<label><input type="checkbox" [checked]="showExtraTab()" (change)="showExtraTab.set(!showExtraTab())" /> show 3rd tab</label>
+<app-tabs>
+  <app-tab label="Overview">Overview content</app-tab>
+  <app-tab label="Details">Details content</app-tab>
+  @if (showExtraTab()) {
+    <app-tab label="Extra">Extra content (query result updated)</app-tab>
+  }
+</app-tabs>
+
+<h3>Legacy &#64;ViewChild static vs dynamic</h3>
+<span #staticTarget>static target</span>
+@if (true) {
+  <span #dynamicTarget> · dynamic target (inside &#64;if)</span>
+}
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Queries" />

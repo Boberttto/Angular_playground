@@ -1,0 +1,10 @@
+<div class="row">
+  <button type="button" (click)="explode.set(true)">Make the widget throw</button>
+  <button type="button" class="secondary" (click)="explode.set(false)">Fix it (then click "Try again")</button>
+</div>
+@boundary {
+  <app-flaky-widget [explode]="explode()" />
+} @error {
+  <p class="error">Caught by &#64;boundary: {{ $error.message }}</p>
+  <button type="button" class="secondary" (click)="$reset()">Try again ($reset)</button>
+}

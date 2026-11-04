@@ -1,0 +1,24 @@
+<p>
+  Each child subscribes to a ticking source that counts its live subscriptions. Toggle the children several
+  times: safe strategies return to the same count, the leaky one keeps adding intervals that are never cleared.
+</p>
+<div class="row">
+  <button type="button" (click)="showSafe.set(!showSafe())">{{ showSafe() ? 'Destroy' : 'Create' }} the 4 safe children</button>
+  <button type="button" (click)="showLeaky.set(!showLeaky())">{{ showLeaky() ? 'Destroy' : 'Create' }} the leaky child</button>
+  <button type="button" class="secondary" (click)="ticker.killAll()">Kill all subscriptions</button>
+</div>
+<p class="counter">
+  Live subscriptions: <strong [class.error]="ticker.active() > (showSafe() ? 4 : 0) + (showLeaky() ? 1 : 0)">{{ ticker.active() }}</strong>
+  <span class="muted">(expected: {{ (showSafe() ? 4 : 0) + (showLeaky() ? 1 : 0) }})</span>
+</p>
+<div class="children">
+  @if (showSafe()) {
+    <app-manual-child />
+    <app-take-until-destroyed-child />
+    <app-async-pipe-child />
+    <app-to-signal-child />
+  }
+  @if (showLeaky()) {
+    <app-leaky-child />
+  }
+</div>

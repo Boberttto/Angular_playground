@@ -1,0 +1,20 @@
+<div class="row">
+  <span>count = <strong>{{ count() }}</strong></span>
+  <button type="button" (click)="inc()">count + 1</button>
+  <button type="button" class="secondary" (click)="readTwice()">Read doubled() twice</button>
+</div>
+
+<h3>Lazy</h3>
+<label><input type="checkbox" [checked]="displayed()" (change)="displayed.set(!displayed())" /> Render doubled()</label>
+@if (displayed()) {
+  <p>doubled = <strong>{{ doubled() }}</strong></p>
+} @else {
+  <p class="muted">doubled() is not read by anyone: changing count does NOT run its derivation.</p>
+}
+
+<h3>Dynamic dependencies</h3>
+<label><input type="checkbox" [checked]="showCount()" (change)="showCount.set(!showCount())" /> showCount</label>
+<p>conditional = <strong>{{ conditional() }}</strong></p>
+<p class="muted">With showCount off, "count + 1" does not re-run <code>conditional</code> (count is not a dependency).</p>
+
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" />

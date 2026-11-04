@@ -1,0 +1,9 @@
+<section>
+  <header>
+    <h2>{{ heading() }}</h2>
+    @if (docs(); as url) {
+      <a [href]="url" target="_blank" rel="noopener">📖 Docs</a>
+    }
+  </header>
+  <ng-content />
+</section>

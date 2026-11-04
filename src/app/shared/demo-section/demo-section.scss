@@ -1,0 +1,23 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+:host {
+  display: block;
+  margin-bottom: v.$space-5;
+}
+
+section {
+  @include m.card;
+}
+
+header {
+  @include m.flex-row;
+  justify-content: space-between;
+  border-bottom: 1px solid v.$color-border;
+  margin-bottom: v.$space-3;
+
+  h2 {
+    font-size: 1.15rem;
+    margin: v.$space-2 0;
+  }
+}

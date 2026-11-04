@@ -1,0 +1,24 @@
+@use 'variables' as v;
+
+h3 {
+  font-size: 1rem;
+  margin-top: v.$space-4;
+}
+
+.lists {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: v.$space-4;
+}
+
+li {
+  padding: 2px v.$space-1;
+}
+
+.even {
+  background: v.$color-bg;
+}
+
+.ok {
+  color: v.$color-success;
+}

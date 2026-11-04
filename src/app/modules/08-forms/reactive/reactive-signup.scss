@@ -1,0 +1,16 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+form,
+fieldset {
+  @include m.flex-col;
+}
+
+fieldset {
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+}
+
+label {
+  @include m.flex-col(v.$space-1);
+}

@@ -1,0 +1,42 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: v.$space-3;
+}
+
+.cell {
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+  padding: v.$space-2;
+
+  h4 {
+    margin: 0 0 v.$space-2;
+  }
+}
+
+.ph {
+  color: v.$color-muted;
+  font-style: italic;
+}
+
+.hover-target {
+  padding: v.$space-2;
+  border: 1px dashed v.$color-border;
+}
+
+.tall-spacer {
+  margin-top: v.$space-3;
+}
+
+.scroller {
+  height: 120px;
+  overflow-y: auto;
+}
+
+.spacer {
+  height: 220px;
+  color: v.$color-muted;
+}

@@ -1,0 +1,20 @@
+<div class="col">
+  <!-- name is required; featured is a boolean attribute thanks to booleanAttribute -->
+  <app-profile-card
+    name="Ada Lovelace"
+    [nickname]="nickname()"
+    featured
+    [level]="level()"
+    avatar="👩‍🔬"
+    (selected)="onSelected($event)"
+  />
+  <!-- level="2" is a STRING: numberAttribute converts it -->
+  <app-profile-card name="Alan Turing" role="Mathematician" level="2" (selected)="onSelected($event)" />
+  <app-profile-card name="Linus" featured="false" (selected)="onSelected($event)" />
+</div>
+<div class="row">
+  <button type="button" class="secondary" (click)="level.set((level() % 5) + 1)">Ada level++ ({{ level() }})</button>
+  <label>Ada nickname (raw, trimmed by transform): <input [value]="nickname()" (input)="nickname.set($any($event.target).value)" /></label>
+</div>
+<p class="muted">Click a card: the host <code>(click)</code> listener emits the <code>selected</code> output.</p>
+<app-log-panel [entries]="log.entries()" (cleared)="log.clear()" title="Outputs received by the parent" />

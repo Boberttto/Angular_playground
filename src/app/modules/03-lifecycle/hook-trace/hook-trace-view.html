@@ -1,0 +1,17 @@
+<app-log-panel [entries]="trace.log.entries()" (cleared)="trace.clear()" [title]="title()" />
+
+@if (trace.counts().length) {
+  <details>
+    <summary>Calls per hook (since last clear)</summary>
+    <table>
+      <tbody>
+        @for (row of trace.counts(); track row[0]) {
+          <tr>
+            <td>{{ row[0] }}</td>
+            <td class="n">{{ row[1] }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </details>
+}

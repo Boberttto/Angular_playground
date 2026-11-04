@@ -1,0 +1,34 @@
+// Shared mixins. Usage:
+//   @use 'mixins' as m;
+//   .box { @include m.card; }
+@use 'variables' as v;
+
+@mixin card {
+  background: v.$color-surface;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius;
+  padding: v.$space-4;
+}
+
+@mixin flex-row($gap: v.$space-2) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $gap;
+}
+
+@mixin flex-col($gap: v.$space-2) {
+  display: flex;
+  flex-direction: column;
+  gap: $gap;
+}
+
+@mixin mono-box {
+  font-family: v.$font-mono;
+  font-size: 0.85rem;
+  background: v.$color-code-bg;
+  color: v.$color-code-text;
+  border-radius: v.$radius-sm;
+  padding: v.$space-3;
+  overflow-x: auto;
+}

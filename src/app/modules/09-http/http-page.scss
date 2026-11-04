@@ -1,0 +1,31 @@
+@use 'variables' as v;
+
+:host {
+  display: block;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: v.$space-4;
+  align-items: start;
+}
+
+aside {
+  position: sticky;
+  top: v.$space-4;
+}
+
+.legend {
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  aside {
+    position: static;
+  }
+}

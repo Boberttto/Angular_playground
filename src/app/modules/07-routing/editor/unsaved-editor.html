@@ -1,0 +1,10 @@
+<h3>📝 Editor (CanDeactivate)</h3>
+<textarea rows="3" [value]="draft()" (input)="onInput($event)"></textarea>
+<div class="row">
+  <button type="button" (click)="save()" [disabled]="!dirty()">Save</button>
+  @if (dirty()) {
+    <span class="warning">● Unsaved changes — try leaving via a link above.</span>
+  } @else {
+    <span class="muted">All changes saved.</span>
+  }
+</div>

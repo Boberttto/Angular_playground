@@ -1,0 +1,8 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.cards {
+  @include m.flex-row(v.$space-3);
+  align-items: stretch;
+  margin: v.$space-3 0;
+}

@@ -1,0 +1,42 @@
+<table>
+  <thead>
+    <tr><th>Recipe</th><th>Provider</th><th>Injected value</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>useClass</td>
+      <td><code>&#123; provide: Logger, useClass: FancyLogger &#125;</code></td>
+      <td>{{ logger.name }} → {{ logger.format('hi') }}</td>
+    </tr>
+    <tr>
+      <td>useExisting</td>
+      <td><code>&#123; provide: LegacyLogger, useExisting: Logger &#125;</code></td>
+      <td>{{ legacyLogger.name }} · same instance as Logger: <strong>{{ sameInstance }}</strong></td>
+    </tr>
+    <tr>
+      <td>useValue</td>
+      <td><code>&#123; provide: APP_SETTINGS, useValue: &#123;…&#125; &#125;</code></td>
+      <td><code>{{ settings.apiUrl }}</code>, retries = {{ settings.retries }}</td>
+    </tr>
+    <tr>
+      <td>useFactory + deps</td>
+      <td><code>&#123; provide: API_CLIENT_LABEL, useFactory: fn, deps: [APP_SETTINGS, Logger] &#125;</code></td>
+      <td>{{ apiClientLabel }}</td>
+    </tr>
+    <tr>
+      <td>multi: true</td>
+      <td><code>&#123; provide: PLUGINS, useValue: '…', multi: true &#125;</code> ×3</td>
+      <td>array of {{ plugins.length }}: {{ plugins.join(', ') }}</td>
+    </tr>
+    <tr>
+      <td>InjectionToken factory</td>
+      <td><code>new InjectionToken('BUILD_INFO', &#123; factory &#125;)</code> (no provider!)</td>
+      <td>{{ buildInfo }}</td>
+    </tr>
+    <tr>
+      <td>Token factory + inject()</td>
+      <td><code>factory: () => … inject(BUILD_INFO) …</code></td>
+      <td>{{ greeting }}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,17 @@
+@use 'variables' as v;
+
+:host {
+  display: block;
+  border: 2px dashed v.$color-accent;
+  border-radius: v.$radius;
+  padding: v.$space-3;
+}
+
+.title {
+  font-family: v.$font-mono;
+  color: v.$color-accent;
+}
+
+.projected {
+  margin-bottom: v.$space-2;
+}

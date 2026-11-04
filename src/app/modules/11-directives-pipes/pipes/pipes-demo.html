@@ -1,0 +1,28 @@
+<h3>Custom pure pipe with arguments</h3>
+<div class="row">
+  <input size="50" [value]="text()" (input)="text.set($any($event.target).value)" />
+  <label>limit <input type="number" min="0" max="80" [value]="limit()" (input)="limit.set(+$any($event.target).value)" /></label>
+</div>
+<p><code>text | truncate: limit : ' [...]'</code> → <strong>{{ text() | truncate: limit() : ' [...]' }}</strong></p>
+<p><code>text | truncate</code> (default args) → <strong>{{ text() | truncate }}</strong></p>
+
+<h3>Pure vs impure vs method — when does transform run?</h3>
+<div class="row">
+  <button type="button" (click)="mutate()">push() (mutate same array)</button>
+  <button type="button" (click)="replace()">[...arr, x] (new array)</button>
+  <button type="button" class="secondary" (click)="bumpUnrelated()">Unrelated change ({{ unrelated() }})</button>
+</div>
+<table>
+  <tbody>
+    <tr><td><code>fruits | joinPure</code></td><td>{{ fruits | joinPure }}</td></tr>
+    <tr><td><code>fruits | joinImpure</code></td><td>{{ fruits | joinImpure }}</td></tr>
+    <tr><td><code>joinViaMethod(fruits)</code></td><td>{{ joinViaMethod(fruits) }}</td></tr>
+  </tbody>
+</table>
+<app-call-stats-panel />
+<p class="muted">
+  Each click is an event in this component, so Angular marks this view (and its ancestors) dirty and re-renders
+  it: the impure pipe and the method run every time, the pure pipe only when the array reference changes. After
+  <em>push()</em> the pure row is stale. Even “Reset counters” is a click inside this view, so the impure/method
+  counters restart at 1.
+</p>

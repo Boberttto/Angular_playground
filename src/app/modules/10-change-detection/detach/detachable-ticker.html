@@ -1,0 +1,8 @@
+<span class="render-count"></span>{{ renders.mark() }}
+<div class="name">Ticker {{ detached() ? '(DETACHED)' : '(attached)' }}</div>
+<p>ticks (signal, +1/s) = <strong>{{ ticks() }}</strong></p>
+<div class="row">
+  <button type="button" (click)="detach()" [disabled]="detached()">detach()</button>
+  <button type="button" (click)="detectChanges()">detectChanges()</button>
+  <button type="button" class="secondary" (click)="reattach()" [disabled]="!detached()">reattach()</button>
+</div>

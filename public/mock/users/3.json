@@ -1,0 +1,7 @@
+{
+  "id": 3,
+  "name": "Grace Hopper",
+  "email": "grace@example.com",
+  "role": "viewer",
+  "bio": "Invented one of the first compilers."
+}

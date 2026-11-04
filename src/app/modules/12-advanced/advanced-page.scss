@@ -1,0 +1,6 @@
+@use 'variables' as v;
+
+.measured {
+  padding: v.$space-2;
+  border: 1px dashed v.$color-accent;
+}

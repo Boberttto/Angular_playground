@@ -1,0 +1,10 @@
+<div class="row">
+  <button type="button" (click)="flaky()">GET /api/flaky with retry(&#123; count: 2, delay &#125;)</button>
+  <button type="button" (click)="broken()">GET /api/error (500) + catchError</button>
+  <button type="button" (click)="missing()">GET /mock/does-not-exist.json</button>
+</div>
+@if (outcome(); as o) {
+  <p [class.error]="!o.ok">{{ o.ok ? '✅' : '❌' }} {{ o.text }}</p>
+} @else {
+  <p class="muted">Pick a request. Watch the HTTP log: the flaky one fails twice, then succeeds.</p>
+}

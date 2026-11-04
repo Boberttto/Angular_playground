@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+:host {
+  display: block;
+}
+
+details {
+  margin-top: v.$space-2;
+  font-size: 0.85rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin-top: v.$space-2;
+}
+
+td {
+  padding: 2px v.$space-3 2px 0;
+  font-family: v.$font-mono;
+}
+
+.n {
+  text-align: right;
+  font-weight: 600;
+}

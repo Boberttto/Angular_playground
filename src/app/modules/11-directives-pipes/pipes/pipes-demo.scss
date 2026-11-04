@@ -1,0 +1,15 @@
+@use 'variables' as v;
+
+h3 {
+  font-size: 1rem;
+}
+
+table {
+  border-collapse: collapse;
+  margin: v.$space-2 0;
+}
+
+td {
+  border-bottom: 1px solid v.$color-border;
+  padding: v.$space-1 v.$space-2;
+}

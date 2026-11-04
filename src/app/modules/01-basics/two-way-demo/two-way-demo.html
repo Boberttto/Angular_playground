@@ -1,0 +1,23 @@
+<div class="grid">
+  <div>
+    <h3>[(ngModel)] + plain field</h3>
+    <input [(ngModel)]="plainName" />
+    <p>plainName = {{ plainName }}</p>
+  </div>
+
+  <div>
+    <h3>[(ngModel)] + signal</h3>
+    <!-- Pass the signal itself, NOT signalName() (a value cannot be written back). -->
+    <input [(ngModel)]="signalName" />
+    <p>signalName() = {{ signalName() }}</p>
+  </div>
+
+  <div>
+    <h3>Desugared</h3>
+    <!-- [(ngModel)]="x" is sugar for [ngModel]="x" (ngModelChange)="x = $event" -->
+    <input [ngModel]="manualName()" (ngModelChange)="manualName.set($event)" />
+    <!-- Without any directive: native [value] + (input) -->
+    <input [value]="manualName()" (input)="manualName.set($any($event.target).value)" />
+    <p>manualName() = {{ manualName() }}</p>
+  </div>
+</div>

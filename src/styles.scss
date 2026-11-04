@@ -1,0 +1,95 @@
+// Global styles. Component-specific styles live next to each component (.scss).
+@use 'variables' as v;
+@use 'mixins' as m;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  font-family: v.$font-sans;
+  background: v.$color-bg;
+  color: v.$color-text;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+}
+
+a {
+  color: v.$color-primary;
+}
+
+code {
+  font-family: v.$font-mono;
+  font-size: 0.9em;
+  background: v.$color-primary-soft;
+  padding: 0 v.$space-1;
+  border-radius: v.$radius-sm;
+}
+
+pre {
+  @include m.mono-box;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  padding: v.$space-1 v.$space-3;
+  border-radius: v.$radius-sm;
+  border: 1px solid v.$color-primary;
+  background: v.$color-primary;
+  color: #fff;
+
+  &.secondary {
+    background: transparent;
+    color: v.$color-primary;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+input,
+select,
+textarea {
+  font: inherit;
+  padding: v.$space-1 v.$space-2;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-sm;
+}
+
+// Signal forms / reactive forms state classes
+.ng-invalid.ng-touched {
+  border-color: v.$color-danger;
+}
+
+.error {
+  color: v.$color-danger;
+  font-size: 0.85rem;
+}
+
+.row {
+  @include m.flex-row;
+}
+
+.col {
+  @include m.flex-col;
+}
+
+.muted {
+  color: v.$color-muted;
+}

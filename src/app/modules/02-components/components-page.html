@@ -1,0 +1,31 @@
+<app-page-header heading="02 · Components" docsFolder="02-components">
+  A component = a TypeScript class + a template + styles + a selector. This page dissects one, then shows
+  how components talk to each other, project content, query their children and scope their CSS.
+</app-page-header>
+
+<app-demo-section heading="1. Anatomy: selector, host, input(), output()" docs="https://angular.dev/guide/components/inputs">
+  <app-anatomy-demo />
+</app-demo-section>
+
+<app-demo-section heading="2. model(): two-way binding with a custom component" docs="https://angular.dev/guide/templates/two-way-binding">
+  <app-model-demo />
+</app-demo-section>
+
+<app-demo-section
+  heading="3. Parent ↔ child communication & smart vs presentational"
+  docs="https://angular.dev/guide/components/outputs"
+>
+  <app-shop-container />
+</app-demo-section>
+
+<app-demo-section heading="4. Content projection" docs="https://angular.dev/guide/components/content-projection">
+  <app-projection-demo />
+</app-demo-section>
+
+<app-demo-section heading="5. Queries: viewChild / viewChildren / contentChild / contentChildren" docs="https://angular.dev/guide/components/queries">
+  <app-queries-demo />
+</app-demo-section>
+
+<app-demo-section heading="6. View encapsulation & :host" docs="https://angular.dev/guide/components/styling">
+  <app-encapsulation-demo />
+</app-demo-section>

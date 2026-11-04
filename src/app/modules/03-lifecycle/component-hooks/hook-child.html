@@ -1,0 +1,10 @@
+<div class="title">&lt;app-hook-child&gt; <span class="muted">(OnPush by default)</span></div>
+<p #inView>
+  label = <strong>{{ label() }}</strong> · legacyCount = <strong>{{ legacyCount }}</strong> · clicks =
+  <strong>{{ clicks() }}</strong>
+</p>
+<div class="projected">
+  <span class="muted">Projected content:</span>
+  <ng-content />
+</div>
+<button type="button" class="secondary" (click)="onClick()">Click inside child</button>

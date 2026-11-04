@@ -1,0 +1,38 @@
+<button type="button" (click)="cycle()">Cycle: null → no address → with address</button>
+<pre>person() = {{ person() === null ? 'null' : person()?.name + (person()?.address ? ' + address' : ' (no address)') }}</pre>
+
+<table>
+  <tbody>
+    <tr>
+      <td><code>person()?.address?.city</code> (optional chaining)</td>
+      <td>[{{ person()?.address?.city }}]</td>
+    </tr>
+    <tr>
+      <td><code>person()?.address?.city ?? 'unknown city'</code> (nullish coalescing)</td>
+      <td>{{ person()?.address?.city ?? 'unknown city' }}</td>
+    </tr>
+    <tr>
+      <td><code>config!.theme</code> (TS non-null assertion)</td>
+      <td>{{ config!.theme }}</td>
+    </tr>
+    <tr>
+      <td><code>`Hello ${{ '{' }}...{{ '}' }}`</code> (template literal)</td>
+      <td>{{ `Hello ${person()?.name ?? 'stranger'}` }}</td>
+    </tr>
+    <tr>
+      <td><code>tasks().filter((t) =&gt; !t.done).length</code> (arrow fn, expression body only)</td>
+      <td>{{ tasks().filter((t) => !t.done).length }} remaining</td>
+    </tr>
+    <tr>
+      <td><code>typeof person()</code></td>
+      <td>{{ typeof person() }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="muted">
+  Not allowed in templates: <code>new</code>, bitwise operators (<code>|</code> is the pipe!), destructuring,
+  declarations (<code>let</code>/<code>const</code>/<code>function</code>), block-body arrow functions, globals
+  like <code>Math</code> or <code>window</code> (only <code>undefined</code> and <code>$any</code> exist), and
+  assignments outside event statements.
+</p>

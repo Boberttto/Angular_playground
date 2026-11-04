@@ -1,0 +1,30 @@
+<app-page-header heading="08 · Forms" docsFolder="08-forms">
+  The same "sign-up" form built three ways: template-driven, reactive (typed) and Signal Forms
+  (stable in Angular 22). Plus custom controls: ControlValueAccessor vs FormValueControl.
+</app-page-header>
+
+<app-demo-section heading="1 · Template-driven (ngModel, ngForm, validation attributes)" docs="https://angular.dev/guide/forms/template-driven-forms">
+  <app-template-signup />
+</app-demo-section>
+
+<app-demo-section heading="2 · Reactive typed forms (FormBuilder, FormArray, custom/async/cross-field validators, CVA)" docs="https://angular.dev/guide/forms/reactive-forms">
+  <p class="muted">Try usernames <code>admin</code> (sync validator) and <code>john</code> (async validator).</p>
+  <app-reactive-signup />
+</app-demo-section>
+
+<app-demo-section heading="3 · Signal Forms (form(), [formField], schema rules, submit)" docs="https://angular.dev/guide/forms/signals/overview">
+  <p class="muted">Same rules. Try <code>admin</code>, <code>john</code>, and <code>server</code> (submission error).</p>
+  <app-signal-signup />
+</app-demo-section>
+
+<app-demo-section heading="Which one should I use?" docs="https://angular.dev/guide/forms/signals/comparison">
+  <table>
+    <tr><th></th><th>Template-driven</th><th>Reactive</th><th>Signal Forms</th></tr>
+    <tr><td>Source of truth</td><td>Template (directives create controls)</td><td>FormGroup in the class</td><td>Your <code>signal()</code> model</td></tr>
+    <tr><td>Reactivity</td><td>Angular-managed (directives)</td><td>Observables (<code>valueChanges</code>)</td><td>Signals (<code>value()</code>, <code>valid()</code>…)</td></tr>
+    <tr><td>Typing</td><td>Minimal</td><td>Explicit (typed forms)</td><td>Strong, inferred from the model</td></tr>
+    <tr><td>Validation</td><td>Attributes / directives</td><td>Validator functions</td><td>Schema rules (<code>required</code>, <code>validate</code>…)</td></tr>
+    <tr><td>Custom control</td><td colspan="2">ControlValueAccessor</td><td>FormValueControl (a <code>model()</code>)</td></tr>
+    <tr><td>Good for</td><td>Small, simple forms</td><td>Existing apps, complex RxJS flows</td><td>New signal-based code</td></tr>
+  </table>
+</app-demo-section>

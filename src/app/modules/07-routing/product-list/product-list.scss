@@ -1,0 +1,6 @@
+@use 'variables' as v;
+
+ul {
+  margin: 0;
+  padding-left: v.$space-5;
+}

@@ -1,0 +1,19 @@
+<h3>🛒 Products</h3>
+@if (missing()) {
+  <p class="error">The resolver redirected you: that product does not exist.</p>
+}
+<p class="row">
+  Sort (query param, merged with existing ones):
+  <a routerLink="." [queryParams]="{ sort: 'name' }" queryParamsHandling="merge">name</a>
+  <a routerLink="." [queryParams]="{ sort: 'price' }" queryParamsHandling="merge">price</a>
+  <span class="muted">current: <code>{{ sortKey() }}</code></span>
+</p>
+<ul>
+  @for (p of sorted(); track p.id) {
+    <li>
+      <!-- Relative link: [id] is resolved against the current route (/routing/products) -->
+      <a [routerLink]="[p.id]">{{ p.name }}</a> — {{ p.price }} $
+    </li>
+  }
+  <li><a [routerLink]="[999]">Unknown product (resolver redirects)</a></li>
+</ul>

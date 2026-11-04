@@ -1,0 +1,37 @@
+<app-page-header heading="12 · Advanced" docsFolder="12-advanced">
+  &#64;defer, dynamic components, templates &amp; projection, &#64;boundary, security, browser-only code and
+  testing with Vitest. SSR/hydration, i18n and performance are covered in the theory file.
+</app-page-header>
+
+<app-demo-section heading="@defer blocks & triggers" docs="https://angular.dev/guide/templates/defer">
+  <p class="muted">
+    Open DevTools › Network to see the lazy chunk(s). With <code>ng serve</code> HMR on, all &#64;defer chunks are
+    fetched eagerly — run <code>ng serve --no-hmr</code> to observe real trigger behaviour.
+  </p>
+  <app-defer-demo />
+</app-demo-section>
+
+<app-demo-section heading="Dynamic components (ViewContainerRef, bindings, setInput, NgComponentOutlet)" docs="https://angular.dev/guide/components/programmatic-rendering">
+  <app-dynamic-demo />
+</app-demo-section>
+
+<app-demo-section heading="ng-template, ngTemplateOutlet & advanced content projection" docs="https://angular.dev/guide/templates/ng-template">
+  <app-template-demo />
+</app-demo-section>
+
+<app-demo-section heading="Error boundaries (@boundary — developer preview)" docs="https://angular.dev/guide/templates/error-boundaries">
+  <app-boundary-demo />
+</app-demo-section>
+
+<app-demo-section heading="Security: sanitization & DomSanitizer" docs="https://angular.dev/best-practices/security">
+  <app-sanitization-demo />
+</app-demo-section>
+
+<app-demo-section heading="Browser-only code: afterNextRender" docs="https://angular.dev/api/core/afterNextRender">
+  <div #measured class="measured">Measured after the first render: width = {{ width() ?? '…' }} px</div>
+</app-demo-section>
+
+<app-demo-section heading="Testing with Vitest (units used by the *.spec.ts files)" docs="https://angular.dev/guide/testing">
+  <p class="muted">Run <code>npx ng test --watch=false</code>. Specs live in <code>src/app/modules/12-advanced/**</code>.</p>
+  <app-testing-showcase />
+</app-demo-section>

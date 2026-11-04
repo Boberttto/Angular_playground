@@ -1,0 +1,35 @@
+@use 'variables' as v;
+@use 'mixins' as m;
+
+.lane {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: v.$space-3;
+  align-items: center;
+  padding: v.$space-2 0;
+  border-bottom: 1px solid v.$color-border;
+}
+
+.name {
+  @include m.flex-col(0);
+}
+
+.chips,
+.legend {
+  @include m.flex-row(v.$space-1);
+}
+
+.chip {
+  font-family: v.$font-mono;
+  font-size: 0.8rem;
+  padding: 2px v.$space-2;
+  border-radius: 999px;
+  border: 1px solid v.$color-border;
+  transition: background 0.2s;
+
+  &.queued { background: #eee; color: v.$color-muted; }
+  &.running { background: #fff4d6; border-color: v.$color-warning; }
+  &.done { background: #e3f6ea; border-color: v.$color-success; }
+  &.cancelled { background: #fde8e8; border-color: v.$color-danger; text-decoration: line-through; }
+  &.ignored { background: transparent; color: v.$color-muted; border-style: dashed; text-decoration: line-through; }
+}
